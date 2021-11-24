@@ -1,0 +1,178 @@
+@import "../../../assets/scss/base.scss";
+.img-responsive {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.magezine-article {
+    .magezine-parent-banner {
+        width: 100%;
+        height: 9rem;
+        padding: 0 !important;
+        margin: 0 !important;
+        overflow: hidden !important;
+        @include borderRadiusCustom(7, 7, 0, 0, 0);
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            padding: 0 !important;
+            margin: 0 !important;
+            @include borderRadiusCustom(7, 7, 0, 0, 0);
+        }
+    }
+    .magezine-parent-logo {
+        position: relative;
+        img {
+            @include borderCustom(0, 3);
+            position: absolute;
+            right: 20px;
+            top: -50px;
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+    }
+    .magezine-parent-info {
+        margin-top: 60px;
+        padding: 0 23px;
+        h1 {
+            font-size: 1.45rem !important;
+            font-weight: 600;
+            font-family: vazir !important;
+            margin-bottom: 7px !important;
+            @media(max-width: 768px) {
+                font-size: 1.35rem !important;
+            }
+            @media(max-width:550px) {
+                font-size: 1.2rem !important;
+            }
+            @media(max-width:425px) {
+                font-size: 1.1rem !important;
+            }
+            .fa-check-circle {
+                color: $BlueColor;
+                font-size: 1.2rem !important;
+                @media(max-width: 768px) {
+                    font-size: 1.15rem !important;
+                }
+                @media(max-width:550px) {
+                    font-size: 1.05rem !important;
+                }
+                @media(max-width:425px) {
+                    font-size: 0.95rem !important;
+                }
+            }
+        }
+        .bio {
+            margin-bottom: 7px !important;
+            font-size: 1rem;
+            color: $grayColor;
+            @media(max-width: 768px) {
+                font-size: 0.95rem !important;
+            }
+            @media(max-width:550px) {
+                font-size: 0.85rem !important;
+            }
+            @media(max-width:425px) {
+                font-size: 0.75rem !important;
+            }
+        }
+        .description {
+            font-size: 1.1rem;
+            margin-bottom: 7px !important;
+            line-height: 1.6rem;
+            color: rgb(87, 87, 87) !important;
+            @media(max-width: 768px) {
+                font-size: 1.1rem !important;
+            }
+            @media(max-width:550px) {
+                font-size: 0.98rem !important;
+            }
+            @media(max-width:425px) {
+                font-size: 0.88rem !important;
+            }
+        }
+    }
+    .vmb {
+        width: 150px !important;
+        @media(max-width: 320px) {
+            width: 100% !important;
+        }
+        .view-more-btn {
+            @include borderCustom(20, 0);
+            background-color: $BlueColor;
+            color: white !important;
+            font-size: 17px;
+            font-weight: normal !important;
+            text-align: center;
+            font-family: vazir !important;
+            @media(min-width: 768px) {
+                transition: all 0.45s;
+                &:hover {
+                    background-color: #004ef5
+                }
+            }
+        }
+    }
+}
+
+.circle {
+    border-radius: 50% !important;
+}
+
+.image-border {
+    @include borderCustom(7, 1.5);
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.sticky-custom {
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 100px;
+    z-index: 100 !important;
+}
+
+.overflow {
+    max-height: 500px !important;
+    overflow-y: auto;
+    border-radius: 7px;
+    scrollbar-color: #636363 transparent !important;
+    scrollbar-width: none !important;
+    padding-left: 1px !important;
+    @media (min-width: 1700px) {
+        max-height: 700px !important;
+    }
+    @media (min-width:2000px) {
+        max-height: 100% !important;
+    }
+}
+
+.overflow::-webkit-scrollbar {
+    background: none;
+    display: block;
+    width: 2px;
+    height: 10px !important;
+}
+
+.overflow::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.overflow::-webkit-scrollbar-thumb {
+    background-color: #afafaf;
+    border-radius: 10px;
+    border-right: none;
+    border-left: none;
+}
+
+.overflow::-webkit-scrollbar-track-piece:end {
+    background: transparent;
+    margin-bottom: 10px;
+}
+
+.overflow::-webkit-scrollbar-track-piece:start {
+    background: transparent;
+    margin-top: 10px;
+}

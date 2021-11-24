@@ -1,0 +1,97 @@
+<app-loading *ngIf="loading"></app-loading>
+<div *ngIf="!loading" [@fadePost]="!this.loading" class="row gy-4">
+    <!-- <h1 class="p-2">
+        {{posts}}
+    </h1> -->
+    <article *ngFor="let item of ArticlePosts" class="col-12 border-col-setting bg-white px-0">
+        <div class="d-flex row align-items-start justify-content-between px-3">
+            <div class="col-10 col-md-4 col-lg-11 w-header-custom ps-0">
+                <div class="row w-100 justify-content-start py-3 px-0 mx-0">
+                    <a class="col-2 cursor w-custom-logo ms-2 px-0" (click)="onActivatePage($event)" routerLink="../">
+                        <img (load)="loadImage()" [hidden]="imgLoad == false" *ngIf="MageDetail?.logo != null" src="{{MageDetail?.logo}}" title="{{MageDetail?.username}}" alt="{{MageDetail?.username}}">
+                        <img (load)="loadImage()" [hidden]="imgLoad == false" *ngIf="MageDetail?.logo == null" src="assets/image/default.jpg" title="{{MageDetail?.username}}" alt="{{MageDetail?.username}}">
+                    </a>
+                    <div class="col-auto col-sm-11 w-custom-detail">
+                        <div class="row gy-2">
+                            <div class="cursor col-12 d-flex align-items-center px-0">
+                                <a class="com-name ancher" (click)="onActivatePage($event)" routerLink="../">{{MageDetail?.name}} <i *ngIf="MageDetail?.is_verify==true" class="fas fa-check-circle me-1"></i>
+                                </a>
+                            </div>
+                            <div class="col-12 d-flex align-items-center px-0">
+                                <i class="fas fa-clock ms-1"></i>
+                                <span class="post-date">{{item.publish_date}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2 col-sm-1 w-custom-menu d-flex align-items-start">
+                <button mat-icon-button class="" [matMenuTriggerFor]="beforeMenu">
+                  <mat-icon>more_horiz</mat-icon>
+                </button>
+                <mat-menu #beforeMenu="matMenu" xPosition="before">
+                    <button mat-menu-item (click)="this.General.share(this.General.CopyPostShowDetailLink(magName,item.slug,item.title))">
+                     <mat-icon>share</mat-icon>
+                     <span class="btn-custom">اشتراک گذاری</span>
+                  </button>
+                    <button mat-menu-item [cdkCopyToClipboard]="this.General.CopyPostShowDetailLink(magName,item.slug,item.title)" (click)='this.General.openSnackBar("لینک کپی شد","تمام")'>
+                     <mat-icon>content_copy</mat-icon>
+                     <span class="btn-custom">کپی لینک</span>
+                  </button>
+                    <button mat-menu-item (click)="this.General.GetReportPost(item.slug,this.General.CopyPostShowDetailLink(magName,item.slug,''))">
+                      <mat-icon>flag</mat-icon>
+                      <span class="btn-custom">گزارش</span>
+                    </button>
+                    <!-- <button mat-menu-item>
+                        <mat-icon>bookmark_border</mat-icon>
+                        <mat-icon>bookmark</mat-icon>
+                        <span class="btn-custom">ذخیره</span>
+                      </button>
+                    <button mat-menu-item>
+                      <mat-icon>edit</mat-icon>
+                      <span class="btn-custom">ویرایش</span>
+                    </button>
+                    <button mat-menu-item>
+                      <mat-icon>delete</mat-icon>
+                      <span class="btn-custom">حذف</span>
+                    </button> -->
+                </mat-menu>
+            </div>
+        </div>
+        <div class="row w-100 me-0 justify-content-center">
+            <a class="ancher p-0 m-0" (click)="onActivatePage($event)" [routerLink]="['/katibe',magName,'negare',item.slug,this.General.RegEx(item.title)]">
+                <h4 class="p-2 post-title my-0">{{item.title}}</h4>
+            </a>
+            <div class="overflow-hidden p-0 h-100">
+                <img *ngIf="item.logo != null" (load)="loadImage()" [hidden]="imgLoad == false" src="{{item.logo}}" alt="{{item.title}}" title="{{item.title}}" class="post-img">
+            </div>
+            <div class="row px-0">
+                <p class="col-12 mx-0 post-text" [innerHTML]="item.text | wordCounter:50:'...'"></p>
+                <div class="row justify-content-end pb-3">
+                    <button mat-raised-button>
+                        <a class="ancher-button" (click)="onActivatePage($event)" [routerLink]="['/katibe',magName,'negare',item.slug,this.General.RegEx(item.title)]">
+                            ادامه مطلب
+                        </a>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="row d-flex align-items-center justrify-content-start p-2 mx-0 mb-1 w-100 border-custom">
+            <a *ngIf="item.is_show_author == true" (click)="onActivatePage($event)" [routerLink]="['/hamafarin',item.author.username]" class="post-author ancher col-auto d-flex align-items-center">
+                <img (load)="loadImage()" [hidden]="imgLoad == false" *ngIf="item.author.profile_photo != null" class="author-img" src="{{item.author.profile_photo}}" title="{{item.author.first_name +' ' + item.author.last_name}}" alt="{{item.author.first_name +' ' + item.author.last_name}}"
+                    alt="{{item.author.username}}">
+                <img (load)="loadImage()" [hidden]="imgLoad == false" *ngIf="item.author.profile_photo == null" class="author-img" src="assets/image/no-pro.png" title="{{item.author.first_name +' ' + item.author.last_name}}" alt="{{item.author.first_name +' ' + item.author.last_name}}"
+                    alt="{{item.author.username}}">
+                <span class="author-name">{{item.author.first_name +' ' + item.author.last_name}}</span>
+            </a>
+            <div class="post-view col-auto d-flex align-items-center">
+                <mat-icon class="d-flex align-items-center">
+                    visibility
+                </mat-icon>
+                <span>
+                  &nbsp;{{item.visitor_counter}}
+              </span>
+            </div>
+        </div>
+    </article>
+</div>

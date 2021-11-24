@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="utf-8">
+    <title>اینولینکس </title>
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="دریافت اطلاعات درباره کسب وکار و توسعه نوآوری را میتوانید از سایت اینولینکس بدست آورید ">
+    <meta property="og:keywords" content="اینولینکس,کارآفرینی,توسعه نوآوری,کسب و کار,فناوری">
+    <meta property="og:author" content="مسعودآقایی ساداتی">
+    <meta property="og:title" content="اینولینکس">
+    <meta property="og:image" content="assets/image/ino.jpg">
+    <meta property="og:url" content="http://dev.inolinx.com">
+    <meta name="description" content="دریافت اطلاعات درباره کسب وکار و توسعه نوآوری را میتوانید از سایت اینولینکس بدست آورید ">
+    <meta name="keywords" content="اینولینکس,کارآفرینی,توسعه نوآوری,کسب و کار,فناوری">
+    <meta name="author" content="مسعودآقایی ساداتی">
+    <link rel="icon" type="image/x-icon" href="assets/image/1.png">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default?v=1"></script>
+</head>
+
+<body class="mat-typography responsive-high-resolation">
+
+    <app-root>
+        <div class="loading">
+            <img src="assets/image/1.png" alt="loadingPage" class="image">
+            <div id="spinningSquaresG">
+                <div id="spinningSquaresG_1" class="spinningSquaresG"></div>
+                <div id="spinningSquaresG_2" class="spinningSquaresG"></div>
+                <div id="spinningSquaresG_3" class="spinningSquaresG"></div>
+                <div id="spinningSquaresG_4" class="spinningSquaresG"></div>
+                <div id="spinningSquaresG_5" class="spinningSquaresG"></div>
+                <div id="spinningSquaresG_6" class="spinningSquaresG"></div>
+                <div id="spinningSquaresG_7" class="spinningSquaresG"></div>
+                <div id="spinningSquaresG_8" class="spinningSquaresG"></div>
+            </div>
+        </div>
+    </app-root>
+    <script>
+        if (document.readyState === 'loading') { // Loading hasn't finished yet
+            document.addEventListener('DOMContentLoaded', function() {
+                const e = document.querySelector('.loading');
+                e.classList.add('hidden-window-loaded')
+            });
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&v=weekly&channel=2?v=1" async></script>
+</body>
+
+</html>

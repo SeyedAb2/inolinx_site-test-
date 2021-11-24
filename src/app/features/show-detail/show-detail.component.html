@@ -1,0 +1,151 @@
+<div class="container-fluid" (scroll)="onscroll()">
+    <section class="row d-flex justify-content-center px-0">
+        <aside class="col-12 col-lg-8 col-custom-right">
+            <div class="row d-flex justify-content-start mx-lg-0">
+                <div class="col-12 mb-5 ps-md-2">
+                    <div class="row">
+                        <div class="col-12 px-lg-0">
+                            <app-loading *ngIf="loading"></app-loading>
+                            <div *ngIf="!loading" [@fadePost]="!this.loading" class="row justify-content-start mx-md-0">
+                                <aside class="col-12 col-md-3 col-custom-right-right d-none d-md-block">
+                                    <div class="row pe-2 ps-lg-0 pe-lg-0 ps-md-2 ps-lg-0 sticky" [ngClass]="stickyController?'sticky-custom':''">
+                                        <div class="overflow px-0 mx-0">
+                                            <div class="col-12 border-col-setting mb-3">
+                                                <div class="row mx-0 w-100 ">
+                                                    <a (click)="onActivate($event)" [routerLink]="['/katibe',data?.magazine?.username]" class="ancher col-8 mx-auto my-3 px-0 img-responsive">
+                                                        <img *ngIf="data?.magazine?.logo != null" class="img-responsive w-100 h-auto" src="{{this.imgPath+data?.magazine?.logo}}" alt="{{data?.magazine?.username}}" title="{{data?.magazine?.username}}">
+                                                        <img *ngIf="data?.magazine?.logo == null" class="img-responsive w-100 h-auto" src="assets/image/default.jpg" alt="{{data?.magazine?.username}}" title="{{data?.magazine?.username}}">
+                                                    </a>
+                                                    <a class="ancher" (click)="onActivate($event)" [routerLink]="['/katibe',data?.magazine?.username]">
+                                                        <h4 class="col-12 mt-1 mb-2 text-center font-weight-bold cursor font-family px-0 px-lg-1">
+                                                            {{data?.magazine?.name}}
+                                                        </h4>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="col-12  border-col-setting w-100 p-0">
+                                                <div class="row mx-0 position-relative text-center">
+                                                    <div class="col-12 p-0 banner-sidebar">
+                                                        <a (click)="onActivate($event)" [routerLink]="['/hamafarin',authDetail?.username]" class="ancher">
+                                                            <img *ngIf="authDetail?.banner_photo != null" src="{{this.imgPath+authDetail?.banner_photo}}" alt="{{authDetail?.username}}" title="{{authDetail?.username}}">
+                                                            <img *ngIf="authDetail?.banner_photo == null" src="assets/image/banner.jpg" alt="{{authDetail?.username}}" title="{{authDetail?.username}}">
+                                                        </a>
+                                                    </div>
+                                                    <div *ngIf="data?.is_show_author == true" (click)="onActivate($event)" [routerLink]="['/hamafarin',authDetail?.username]" class="logo-sidebar position-absolute top-25 start-25 ancher cursor">
+                                                        <a (click)="onActivate($event)" [routerLink]="['/hamafarin',authDetail?.username]">
+                                                            <img *ngIf="authDetail?.profile_photo != null" src="{{this.imgPath+authDetail?.profile_photo}}" alt="{{authDetail?.username}}" title="{{authDetail?.username}}">
+                                                            <img *ngIf="authDetail?.profile_photo == null" src="assets/image/no-pro.png" alt="{{authDetail?.username}}" title="{{authDetail?.username}}">
+                                                        </a>
+                                                    </div>
+                                                    <a class="ancher" (click)="onActivate($event)" [routerLink]="['/hamafarin',authDetail?.username]">
+                                                        <h4 class="author-sidebar mt-4 mt-lg-5 mb-4 text-center">
+                                                            {{authDetail?.first_name}} {{authDetail?.last_name}}
+                                                        </h4>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </aside>
+                                <aside class="col-12 col-md-9 col-lg-9 col-custom-right-center px-md-2 px-lg-0">
+                                    <div class="section-control row mx-1 mx-md-0 me-lg-2 ms-lg-1">
+                                        <!--- Start Articles Section -->
+                                        <section class="col-12 px-1">
+                                            <div class="container-fluid px-2">
+                                                <div class="row gy-4">
+                                                    <article class="col-12 border-col-setting bg-white px-0">
+                                                        <div class="d-flex row align-items-start justify-content-between px-3">
+                                                            <div class="col-10 col-md-4 col-lg-11 w-header-custom ps-0">
+                                                                <div class="row w-100 justify-content-start py-3 px-0 mx-0">
+                                                                    <a (click)="onActivate($event)" [routerLink]="['/katibe',data?.magazine?.username]" class="col-2 cursor ancher w-custom-logo ms-2 px-0">
+                                                                        <img *ngIf="magDetail?.logo !=null" src="{{magDetail?.logo}}" alt="{{data?.magazine?.username}}" title="{{data?.magazine?.username}}">
+                                                                        <img *ngIf="magDetail?.logo == null" src="assets/image/default.jpg" alt="{{data?.magazine?.username}}" title="{{data?.magazine?.username}}">
+                                                                    </a>
+                                                                    <div class="col-auto col-sm-11 w-custom-detail">
+                                                                        <div class="row gy-2">
+                                                                            <a (click)="onActivate($event)" [routerLink]="['/katibe',data?.magazine?.username]" class="ancher cursor col-12 d-flex align-items-center px-0">
+                                                                                <span class="com-name">{{data?.magazine?.name}} <i *ngIf="magDetail?.is_verify" class="fas fa-check-circle me-1"></i></span>
+                                                                            </a>
+                                                                            <div class="col-12 d-flex align-items-center px-0">
+                                                                                <i class="fas fa-clock ms-1"></i>
+                                                                                <span class="post-date">{{data?.publish_date}}</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-2 col-sm-1 w-custom-menu d-flex align-items-start">
+                                                                <button mat-icon-button class="" [matMenuTriggerFor]="beforeMenu">
+                                                                        <mat-icon>more_horiz</mat-icon>
+                                                                      </button>
+                                                                <mat-menu #beforeMenu="matMenu" xPosition="before">
+                                                                    <button mat-menu-item (click)="this.General.share(this.General.CopyPostShowDetailLink(data?.magazine?.username,this?.postID,data?.title))">
+                                                                           <mat-icon>share</mat-icon>
+                                                                           <span class="btn-custom">اشتراک گذاری</span>
+                                                                    </button>
+                                                                    <button mat-menu-item [cdkCopyToClipboard]="this.General.CopyPostShowDetailLink(data?.magazine?.username,this?.postID,data?.title)" (click)='this.General.openSnackBar("لینک کپی شد","تمام")'>
+                                                                           <mat-icon>content_copy</mat-icon>
+                                                                           <span class="btn-custom">کپی لینک</span>
+                                                                    </button>
+                                                                    <button mat-menu-item (click)="this.General.GetReportPost(this.postID,this.General.CopyPostShowDetailLink(data?.magazine?.username,this?.postID,''))">
+                                                                            <mat-icon>flag</mat-icon>
+                                                                            <span class="btn-custom">گزارش</span>
+                                                                    </button>
+                                                                    <!-- <button mat-menu-item>
+                                                                            <mat-icon>bookmark_border</mat-icon>
+                                                                            <mat-icon>bookmark</mat-icon>
+                                                                            <span class="btn-custom">ذخیره</span>
+                                                                    </button>
+                                                                    <button mat-menu-item>
+                                                                            <mat-icon>edit</mat-icon>
+                                                                            <span class="btn-custom">ویرایش</span>
+                                                                          </button>
+                                                                    <button mat-menu-item>
+                                                                            <mat-icon>delete</mat-icon>
+                                                                            <span class="btn-custom">حذف</span>
+                                                                    </button> -->
+                                                                </mat-menu>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row w-100 me-0 justify-content-center">
+                                                            <h1 class="p-2 post-title my-0">{{data?.title?.replaceAll('_',' ')?.replaceAll('‌_','‌')}}</h1>
+                                                            <div *ngIf="data?.logo != null" class="overflow-hidden p-0 h-100">
+                                                                <img class="w-100" src="{{imgPath+data?.logo}}" alt="{{data?.title?.replaceAll('_',' ')?.replaceAll('‌_','‌')}}" title="{{data?.title?.replaceAll('_',' ')?.replaceAll('‌_','‌')}}">
+                                                            </div>
+                                                            <div class="row px-0">
+                                                                <p class="col-12 mx-0 post-text-detail" [innerHTML]="data?.text"></p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row d-flex align-items-center justrify-content-start p-2 mx-0 mb-1 w-100 border-custom">
+                                                            <div class="post-view col-auto d-flex align-items-center">
+                                                                <mat-icon class="d-flex align-items-center">
+                                                                    visibility
+                                                                </mat-icon>
+                                                                <span>
+                                                                    &nbsp;{{data?.visitor_counter}}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </article>
+                                                </div>
+                                            </div>
+                                        </section>
+                                        <!--- End Articles Section -->
+                                    </div>
+                                </aside>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <aside class="col-12 col-md-3 ms-1 col-custom-left d-none d-lg-block px-0">
+            <div class="row mx-0 w-100">
+                <div class="col-12 p-0">
+                    <img src="assets/image/job1.jpg" alt="" class="w-100 h-auto image-border">
+                </div>
+            </div>
+        </aside>
+    </section>
+
+</div>

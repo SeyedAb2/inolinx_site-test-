@@ -1,0 +1,1272 @@
+<div class="container-fluid" (scroll)="onscroll()">
+    <section class="row d-flex justify-content-center px-0">
+        <aside class="col-12 col-lg-8 col-custom-right">
+            <div class="row d-flex justify-content-start mx-lg-0">
+                <div class="col-12 mb-5 ps-md-2">
+                    <div class="row">
+                        <div class="col-12 px-lg-0">
+                            <div class="row justify-content-start mx-md-0">
+                                <aside class="col-12 col-md-3 col-custom-right-right d-none d-md-block">
+                                    <div class="row pe-2 ps-lg-0 pe-lg-0 ps-md-2 ps-lg-0 sticky" [ngClass]="stickyController?'sticky-top-custom':''">
+                                        <div class="col-12  border-col-setting w-100 p-0">
+                                            <div class="row mx-0 position-relative text-center">
+                                                <div class="col-12 p-0 banner-sidebar">
+                                                    <img src="assets/image/mbti-banner.jpg" alt="">
+                                                </div>
+                                                <div class="logo-sidebar position-absolute top-25 start-25">
+                                                    <img src="assets/image/mbti-logo.png" alt="">
+                                                </div>
+
+                                                <h4 class="author-sidebar mt-4 mt-lg-5 mb-0 text-center">
+                                                    MBTI-extended
+                                                </h4>
+                                                <h6 class="bio-sidebar text-center">
+                                                    <hr> آزمون چند معیاره MBTI
+                                                </h6>
+                                                <div class="col-12 px-3 my-1"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </aside>
+                                <aside class="col-12 col-md-9 col-custom-right-center px-md-2 px-lg-0">
+                                    <div class="section-control row mx-1 mx-md-0 me-lg-2 ms-lg-1">
+                                        <!--- Start Articles Section -->
+                                        <section class="col-12 px-1">
+                                            <div class="container-fluid px-2">
+                                                <div class="row gy-4">
+                                                    <div class="col-12 bg-white p-0 pb-3 border-col-setting magezine-article">
+                                                        <div class="d-flex align-items-center p-3 justify-content-between">
+                                                            <mat-progress-bar class="progressbar" mode="determinate" [value]="pernum"></mat-progress-bar>
+                                                            <span class="me-1 text-center">
+                                                                {{pernum}}٪
+                                                            </span>
+                                                        </div>
+                                                        <div class="d-flex row justify-content-center quiz-parent px-1">
+                                                            <div class="col-12 ">
+                                                                <h4 class="col-12 my-1 text-center">
+                                                                    ۱ - تاحالا عاشق شدید؟
+                                                                </h4>
+                                                                <div class="col-12 mt-1">
+                                                                    <div class="row d-flex align-items-center justify-content-center">
+                                                                        <div class="col-1 d-flex align-items-center text-success font-family font-weight-normal">
+                                                                            موافقم
+                                                                        </div>
+                                                                        <div class="col-auto d-flex align-items-center px-0">
+                                                                            <div class="d-flex align-items-center global-option-setting" aria-label="large"></div>
+                                                                        </div>
+                                                                        <div class="col-1 d-flex align-items-center text-danger font-family font-weight-normal">
+                                                                            مخالفم
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+                                        <!--- End Articles Section -->
+                                    </div>
+                                </aside>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <aside class="col-12 col-md-3 col-custom-left ms-1 d-none d-lg-block px-0">
+            <div class="row mx-0 w-100">
+                <div class="col-12 p-0">
+                    <img src="assets/image/job1.jpg" alt="" class="w-100 h-auto image-border">
+                </div>
+            </div>
+        </aside>
+    </section>
+
+</div>
+
+
+
+
+
+
+<!-- <script>
+    exam_id = localStorage.getItem("exam_id");
+
+    question = -1;
+    category = -1;
+    per_page = 0;
+    page = 1;
+    is_end = false;
+    questions = {};
+    question_counter = 0;
+    require_response = false;
+    response_json = {};
+    is_categorized = false;
+
+    function makeid(length) {
+        var result = '';
+        var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var charactersLength = characters.length;
+        for (var i = 0; i < length; i++) {
+            result += characters.charAt(Math.floor(Math.random() *
+                charactersLength));
+        }
+        return result;
+    }
+
+    function getExam() {
+        const Http = new XMLHttpRequest();
+        const url = '/api/exam/criteria/get/' + exam_id + '/';
+        Http.open("GET", url);
+        Http.send();
+
+
+        Http.onreadystatechange = (e) => {
+            if (Http.readyState == 4 && Http.status === 200) {
+                var questions = JSON.parse(Http.responseText);
+                console.log(questions.data);
+                showQuestion(questions.data);
+            }
+        }
+    }
+
+    function addProgress(up) {
+        pb = document.getElementById("progress-bar");
+        width = parseInt(up) + parseInt(pb.style.width);
+        pb.style.width = width + "%";
+    }
+
+    function decresaseProgress(down) {
+        pb = document.getElementById("progress-bar");
+        width = parseInt(pb.style.width) - parseInt(down);
+        pb.style.width = width + "%";
+    }
+
+    getExam();
+
+    function showQuestion(que) {
+        document.getElementById("info").style.backgroundColor = que.main_color;
+        document.getElementById("btn-exam").style.backgroundColor = que.main_color;
+        document.getElementById("btn-exam").style.borderColor = que.main_color;
+        $("#btn-exam").mouseenter(function() {
+            document.getElementById("btn-exam").style.opacity = "0.85";
+        }).mouseleave(function() {
+            document.getElementById("btn-exam").style.opacity = "1";
+        });
+        document.getElementById("info").getElementsByClassName("name")[0].getElementsByTagName("span")[1].innerText = que.name;
+        document.getElementById("info").getElementsByClassName("description")[0].getElementsByTagName("span")[1].innerText = que.description;
+        per_page = que.question_per_page;
+        question_counter = que.question_counter
+        require_response = que.required_response
+        pb = document.createElement("div");
+        pb.setAttribute("id", "progress-bar");
+        pb.style.width = "1%";
+        pb.style.backgroundColor = que.progress_bar_color
+        document.getElementById("pb_container").appendChild(pb);
+
+        if (que.is_random_question) {
+            question = 0;
+            questions = que.questions;
+            showRandomQuestion(que.questions);
+        } else {
+            // categorized
+            question = 0;
+            category = 0;
+            questions = que.categories;
+            is_categorized = true;
+            showNotRandomQuestion(questions);
+        }
+    }
+
+    function showRandomQuestion() {
+        questions_id_div = document.getElementById("questions");
+        questions_id_div.innerHTML = "";
+        EPPZScrollTo.scrollVerticalToElementById("pb_container", 20);
+        for (var i = 0; i < per_page; i++) {
+            question = ((parseInt(page) - 1) * per_page) + i;
+            if (questions[question] == undefined) {
+                document.getElementById("btn-exam").innerText = "مشاهده نتیجه";
+                is_end = true;
+                return;
+            }
+            if (questions[parseInt(question) + 1] == undefined) {
+                document.getElementById("btn-exam").innerText = "مشاهده نتیجه";
+                is_end = true;
+            }
+            question_div = document.createElement("div");
+            question_div.classList.add("question");
+            question_div.classList.add("container");
+            question_div.setAttribute("id", makeid(6));
+            question_div.setAttribute("data-id", questions[question].id);
+            question_div.setAttribute("data-status", "unresponsed");
+
+            div_question_text = document.createElement("div");
+            div_question_text.classList.add("text-center");
+            div_question_text.classList.add("mt-4");
+            div_question_text.classList.add("mb-4");
+            inner_span = document.createElement("span");
+            inner_span.classList.add("text-center");
+            inner_span.classList.add("question-text");
+            inner_span.innerText = questions[question].text;
+            div_question_text.appendChild(inner_span);
+
+            inner_div = document.createElement("div");
+            inner_div.classList.add("row");
+            inner_div.classList.add("text-center");
+            inner_div.classList.add("justify-content-center");
+            inner_div.classList.add("align-items-center");
+            inner_div.classList.add("mb-4");
+
+            positive_div = document.createElement("div");
+            positive_div.classList.add("text-left");
+            positive_span = document.createElement("span");
+            positive_span.setAttribute("data-where", "positive");
+            positive_span.innerText = questions[question].positive_comment;
+            positive_span.style.color = questions[question].positive_color;
+            positive_div.appendChild(positive_span);
+
+            negative_div = document.createElement("div");
+            negative_div.classList.add("text-right");
+            negative_span = document.createElement("span");
+            negative_span.setAttribute("data-where", "negative");
+            negative_span.innerText = questions[question].negative_comment;
+            negative_div.style.color = questions[question].negative_color;
+            negative_div.appendChild(negative_span);
+
+            options_div = document.createElement("div");
+            options_div.classList.add("father-checked");
+            options_div.classList.add("d-flex");
+            options_div.classList.add("align-items-center");
+            options_div.classList.add("justify-content-center");
+
+
+            for (option in questions[question].options) {
+                div_option = document.createElement("div");
+                div_option.classList.add("selectable");
+                div_option.setAttribute("data-status", "unselected");
+                div_option.classList.add("align-items-center");
+                div_option.classList.add("justify-content-center");
+                div_option.classList.add("d-flex");
+
+                switch (questions[question].options.length) {
+                    case 1:
+                        positive_div.classList.add("col-4");
+                        options_div.classList.add("col-4");
+                        negative_div.classList.add("col-4");
+                        if (option == 0) {
+                            div_option.setAttribute("data-where", "center");
+                            div_option.setAttribute("aria-label", "x-sm");
+                        }
+                        break;
+                    case 2:
+                        positive_div.classList.add("col-4");
+                        options_div.classList.add("col-4");
+                        negative_div.classList.add("col-4");
+                        if (option == 0) {
+                            div_option.setAttribute("data-where", "positive");
+                            div_option.style.borderColor = questions[question].positive_color;
+                            div_option.setAttribute("aria-label", "mid");
+                        }
+                        if (option == 2) {
+                            div_option.setAttribute("data-where", "negative");
+                            div_option.style.borderColor = questions[question].negative_color;
+                            div_option.setAttribute("aria-label", "mid");
+                        }
+                        break;
+                    case 3:
+                        positive_div.classList.add("col-3");
+                        options_div.classList.add("col-4");
+                        negative_div.classList.add("col-3");
+                        if (option == 0) {
+                            div_option.setAttribute("data-where", "positive");
+                            div_option.style.borderColor = questions[question].positive_color;
+                            div_option.setAttribute("aria-label", "mid");
+                        }
+                        if (option == 1) {
+                            div_option.setAttribute("data-where", "center");
+                            div_option.setAttribute("aria-label", "x-sm");
+                        }
+                        if (option == 2) {
+                            div_option.setAttribute("data-where", "negative");
+                            div_option.style.borderColor = questions[question].negative_color;
+                            div_option.setAttribute("aria-label", "mid");
+                        }
+                        break;
+                    case 4:
+                        positive_div.classList.add("col-3");
+                        options_div.classList.add("col-6");
+                        negative_div.classList.add("col-3");
+                        if (option == 0) {
+                            div_option.setAttribute("data-where", "positive");
+                            div_option.style.borderColor = questions[question].positive_color;
+                            div_option.setAttribute("aria-label", "x-mid");
+                        }
+                        if (option == 1) {
+                            div_option.setAttribute("data-where", "positive");
+                            div_option.style.borderColor = questions[question].positive_color;
+                            div_option.setAttribute("aria-label", "x-sm");
+                        }
+                        if (option == 2) {
+                            div_option.setAttribute("data-where", "negative");
+                            div_option.style.borderColor = questions[question].negative_color;
+                            div_option.setAttribute("aria-label", "x-sm");
+                        }
+                        if (option == 3) {
+                            div_option.setAttribute("data-where", "negative");
+                            div_option.style.borderColor = questions[question].negative_color;
+                            div_option.setAttribute("aria-label", "x-mid");
+                        }
+                        break;
+                    case 5:
+                        positive_div.classList.add("col-3");
+                        options_div.classList.add("col-6");
+                        negative_div.classList.add("col-3");
+                        if (option == 0) {
+                            div_option.setAttribute("data-where", "positive");
+                            div_option.style.borderColor = questions[question].positive_color;
+                            div_option.setAttribute("aria-label", "x-mid");
+                        }
+                        if (option == 1) {
+                            div_option.setAttribute("data-where", "positive");
+                            div_option.style.borderColor = questions[question].positive_color;
+                            div_option.setAttribute("aria-label", "x-sm");
+                        }
+                        if (option == 2) {
+                            div_option.setAttribute("data-where", "center");
+                            div_option.setAttribute("aria-label", "sm");
+                        }
+                        if (option == 3) {
+                            div_option.setAttribute("data-where", "negative");
+                            div_option.style.borderColor = questions[question].negative_color;
+                            div_option.setAttribute("aria-label", "x-sm");
+                        }
+                        if (option == 4) {
+                            div_option.setAttribute("data-where", "negative");
+                            div_option.style.borderColor = questions[question].negative_color;
+                            div_option.setAttribute("aria-label", "x-mid");
+                        }
+                        break;
+                    case 6:
+                        positive_div.classList.add("col-2");
+                        options_div.classList.add("col-7");
+                        negative_div.classList.add("col-2");
+                        if (option == 0) {
+                            div_option.setAttribute("data-where", "positive");
+                            div_option.style.borderColor = questions[question].positive_color;
+                            div_option.setAttribute("aria-label", "x-mid");
+                        }
+                        if (option == 1) {
+                            div_option.setAttribute("data-where", "positive");
+                            div_option.style.borderColor = questions[question].positive_color;
+                            div_option.setAttribute("aria-label", "mid");
+                        }
+                        if (option == 2) {
+                            div_option.setAttribute("data-where", "positive");
+                            div_option.style.borderColor = questions[question].positive_color;
+                            div_option.setAttribute("aria-label", "x-sm");
+                        }
+                        if (option == 3) {
+                            div_option.setAttribute("data-where", "negative");
+                            div_option.style.borderColor = questions[question].negative_color;
+                            div_option.setAttribute("aria-label", "x-sm");
+                        }
+                        if (option == 4) {
+                            div_option.setAttribute("data-where", "negative");
+                            div_option.style.borderColor = questions[question].negative_color;
+                            div_option.setAttribute("aria-label", "mid");
+                        }
+                        if (option == 5) {
+                            div_option.setAttribute("data-where", "negative");
+                            div_option.style.borderColor = questions[question].negative_color;
+                            div_option.setAttribute("aria-label", "x-mid");
+                        }
+                        break;
+                    case 7:
+                        positive_div.classList.add("col-2");
+                        options_div.classList.add("col-8");
+                        negative_div.classList.add("col-2");
+                        if (option == 0) {
+                            div_option.setAttribute("data-where", "positive");
+                            div_option.style.borderColor = questions[question].positive_color;
+                            div_option.setAttribute("aria-label", "x-mid");
+                        }
+                        if (option == 1) {
+                            div_option.setAttribute("data-where", "positive");
+                            div_option.style.borderColor = questions[question].positive_color;
+                            div_option.setAttribute("aria-label", "mid");
+                        }
+                        if (option == 2) {
+                            div_option.setAttribute("data-where", "positive");
+                            div_option.style.borderColor = questions[question].positive_color;
+                            div_option.setAttribute("aria-label", "x-sm");
+                        }
+                        if (option == 3) {
+                            div_option.setAttribute("data-where", "center");
+                            div_option.setAttribute("aria-label", "sm");
+                        }
+                        if (option == 4) {
+                            div_option.setAttribute("data-where", "negative");
+                            div_option.style.borderColor = questions[question].negative_color;
+                            div_option.setAttribute("aria-label", "x-sm");
+                        }
+                        if (option == 5) {
+                            div_option.setAttribute("data-where", "negative");
+                            div_option.style.borderColor = questions[question].negative_color;
+                            div_option.setAttribute("aria-label", "mid");
+                        }
+                        if (option == 6) {
+                            div_option.setAttribute("data-where", "negative");
+                            div_option.style.borderColor = questions[question].negative_color;
+                            div_option.setAttribute("aria-label", "x-mid");
+                        }
+                        break;
+                    case 8:
+                        positive_div.classList.add("col-1");
+                        options_div.classList.add("col-10");
+                        negative_div.classList.add("col-1");
+                        if (option == 0) {
+                            div_option.setAttribute("data-where", "positive");
+                            div_option.style.borderColor = questions[question].positive_color;
+                            div_option.setAttribute("aria-label", "large");
+                        }
+                        if (option == 1) {
+                            div_option.setAttribute("data-where", "positive");
+                            div_option.style.borderColor = questions[question].positive_color;
+                            div_option.setAttribute("aria-label", "x-mid");
+                        }
+                        if (option == 2) {
+                            div_option.setAttribute("data-where", "positive");
+                            div_option.style.borderColor = questions[question].positive_color;
+                            div_option.setAttribute("aria-label", "mid");
+                        }
+                        if (option == 3) {
+                            div_option.setAttribute("data-where", "positive");
+                            div_option.style.borderColor = questions[question].positive_color;
+                            div_option.setAttribute("aria-label", "x-sm");
+                        }
+                        if (option == 4) {
+                            div_option.setAttribute("data-where", "negative");
+                            div_option.style.borderColor = questions[question].negative_color;
+                            div_option.setAttribute("aria-label", "x-sm");
+                        }
+                        if (option == 5) {
+                            div_option.setAttribute("data-where", "negative");
+                            div_option.style.borderColor = questions[question].negative_color;
+                            div_option.setAttribute("aria-label", "mid");
+                        }
+                        if (option == 6) {
+                            div_option.setAttribute("data-where", "negative");
+                            div_option.style.borderColor = questions[question].negative_color;
+                            div_option.setAttribute("aria-label", "x-mid");
+                        }
+                        if (option == 7) {
+                            div_option.setAttribute("data-where", "negative");
+                            div_option.style.borderColor = questions[question].negative_color;
+                            div_option.setAttribute("aria-label", "large");
+                        }
+                        break;
+                    case 9:
+                        positive_div.classList.add("col-1");
+                        options_div.classList.add("col-10");
+                        negative_div.classList.add("col-1");
+                        if (option == 0) {
+                            div_option.setAttribute("data-where", "positive");
+                            div_option.style.borderColor = questions[question].positive_color;
+                            div_option.setAttribute("aria-label", "large");
+                        }
+                        if (option == 1) {
+                            div_option.setAttribute("data-where", "positive");
+                            div_option.style.borderColor = questions[question].positive_color;
+                            div_option.setAttribute("aria-label", "x-mid");
+                        }
+                        if (option == 2) {
+                            div_option.setAttribute("data-where", "positive");
+                            div_option.style.borderColor = questions[question].positive_color;
+                            div_option.setAttribute("aria-label", "mid");
+                        }
+                        if (option == 3) {
+                            div_option.setAttribute("data-where", "positive");
+                            div_option.style.borderColor = questions[question].positive_color;
+                            div_option.setAttribute("aria-label", "x-sm");
+                        }
+                        if (option == 4) {
+                            div_option.setAttribute("data-where", "center");
+                            div_option.setAttribute("aria-label", "sm");
+                        }
+                        if (option == 5) {
+                            div_option.setAttribute("data-where", "negative");
+                            div_option.style.borderColor = questions[question].negative_color;
+                            div_option.setAttribute("aria-label", "x-sm");
+                        }
+                        if (option == 6) {
+                            div_option.setAttribute("data-where", "negative");
+                            div_option.style.borderColor = questions[question].negative_color;
+                            div_option.setAttribute("aria-label", "mid");
+                        }
+                        if (option == 7) {
+                            div_option.setAttribute("data-where", "negative");
+                            div_option.style.borderColor = questions[question].negative_color;
+                            div_option.setAttribute("aria-label", "x-mid");
+                        }
+                        if (option == 8) {
+                            div_option.setAttribute("data-where", "negative");
+                            div_option.style.borderColor = questions[question].negative_color;
+                            div_option.setAttribute("aria-label", "large");
+                        }
+                        break;
+                    default:
+                        break;
+                }
+                div_option.setAttribute("id", makeid(6));
+                div_option.setAttribute("data-id", questions[question].options[option].id);
+                div_option.setAttribute("onclick", "clickable(event)");
+                $(div_option).mouseenter(
+                    function() {
+                        $(this).css("background-color", $(this).attr("style"));
+                        // div_option.style.backgroundColor = div_option.style.borderColor;
+                    }
+                ).mouseleave(
+                    function() {
+                        if ($(this).attr("data-status") != "selected") {
+                            $(this).css("background-color", "");
+                        }
+                    });
+                options_div.appendChild(div_option);
+            }
+
+
+
+
+            inner_div.appendChild(positive_div);
+            inner_div.appendChild(options_div);
+            inner_div.appendChild(negative_div);
+
+
+            question_div.appendChild(div_question_text);
+            question_div.appendChild(inner_div);
+
+            hr = document.createElement("hr");
+            hr.setAttribute("class", "container");
+            hr.style.width = "70%";
+            questions_id_div.appendChild(question_div);
+            questions_id_div.appendChild(hr);
+        }
+        make_inactivate();
+        disable_btn();
+        page += 1;
+    }
+
+    showed_showNotRandomQuestion = []
+
+    function showNotRandomQuestion() {
+        page += 1;
+        if (parseInt(page - 1) * per_page >= question_counter) {
+            document.getElementById("btn-exam").innerText = "مشاهده نتیجه";
+            is_end = true;
+        }
+        counter = 0;
+        categories = questions;
+        questions_id_div = document.getElementById("questions");
+        questions_id_div.innerHTML = "";
+        EPPZScrollTo.scrollVerticalToElementById("pb_container", 20);
+        for (category in categories) {
+            for (question in categories[category].question) {
+                // console.log(typeof(category + question));
+                // console.log(typeof(showed_showNotRandomQuestion[0]));
+                bol = true;
+                for (index in showed_showNotRandomQuestion) {
+                    if (category + question == showed_showNotRandomQuestion[index]) {
+                        bol = false;
+                    }
+                }
+
+                if (bol && counter < per_page) {
+                    showed_showNotRandomQuestion.push(category + question);
+                    counter += 1;
+                    inners_questions = categories[category].question;
+                    question_div = document.createElement("div");
+                    question_div.classList.add("question");
+                    question_div.classList.add("container");
+                    question_div.setAttribute("id", makeid(6));
+                    question_div.setAttribute("data-id", inners_questions[question].id);
+                    question_div.setAttribute("data-status", "unresponsed");
+
+                    if (question == 0 && quiz.show_category_name) {
+                        category_div = document.createElement("div");
+                        category_div.classList.add("text-center");
+                        category_span = document.createElement("span");
+                        category_span.classList.add("category-span");
+                        category_span.innerText = categories[category].text;
+                        category_div.appendChild(category_span);
+                        question_div.appendChild(category_div);
+                    }
+
+                    div_question_text = document.createElement("div");
+                    div_question_text.classList.add("text-center");
+                    div_question_text.classList.add("mt-4");
+                    div_question_text.classList.add("mb-4");
+                    inner_span = document.createElement("span");
+                    inner_span.classList.add("text-center");
+                    inner_span.classList.add("question-text");
+                    inner_span.innerText = inners_questions[question].text;
+                    div_question_text.appendChild(inner_span);
+
+                    inner_div = document.createElement("div");
+                    inner_div.classList.add("row");
+                    inner_div.classList.add("text-center");
+                    inner_div.classList.add("justify-content-center");
+                    inner_div.classList.add("align-items-center");
+                    inner_div.classList.add("mb-4");
+
+                    positive_div = document.createElement("div");
+                    positive_div.classList.add("text-left");
+                    positive_span = document.createElement("span");
+                    positive_span.setAttribute("data-where", "positive");
+                    positive_span.innerText = inners_questions[question].positive_comment;
+                    positive_span.style.color = inners_questions[question].positive_color;
+                    positive_div.appendChild(positive_span);
+
+                    negative_div = document.createElement("div");
+                    negative_div.classList.add("text-right");
+                    negative_span = document.createElement("span");
+                    negative_span.setAttribute("data-where", "negative");
+                    negative_span.innerText = inners_questions[question].negative_comment;
+                    negative_div.style.color = inners_questions[question].negative_color;
+                    negative_div.appendChild(negative_span);
+
+                    options_div = document.createElement("div");
+                    options_div.classList.add("father-checked");
+                    options_div.classList.add("d-flex");
+                    options_div.classList.add("align-items-center");
+                    options_div.classList.add("justify-content-center");
+
+                    down = true;
+
+
+                    for (option in inners_questions[question].options) {
+                        div_option = document.createElement("div");
+                        div_option.classList.add("selectable");
+                        div_option.classList.add("align-items-center");
+                        div_option.classList.add("justify-content-center");
+                        div_option.classList.add("d-flex");
+                        div_option.setAttribute("data-status", "unselected");
+                        switch (inners_questions[question].options.length) {
+                            case 1:
+                                positive_div.classList.add("col-4");
+                                options_div.classList.add("col-4");
+                                negative_div.classList.add("col-4");
+                                if (option == 0) {
+                                    div_option.setAttribute("data-where", "center");
+                                    div_option.setAttribute("aria-label", "x-sm");
+                                }
+                                break;
+                            case 2:
+                                positive_div.classList.add("col-4");
+                                options_div.classList.add("col-4");
+                                negative_div.classList.add("col-4");
+                                if (option == 0) {
+                                    div_option.setAttribute("data-where", "positive");
+                                    div_option.style.borderColor = inners_questions[question].positive_color;
+                                    div_option.setAttribute("aria-label", "mid");
+                                }
+                                if (option == 2) {
+                                    div_option.setAttribute("data-where", "negative");
+                                    div_option.style.borderColor = inners_questions[question].negative_color;
+                                    div_option.setAttribute("aria-label", "mid");
+                                }
+                                break;
+                            case 3:
+                                positive_div.classList.add("col-3");
+                                options_div.classList.add("col-4");
+                                negative_div.classList.add("col-3");
+                                if (option == 0) {
+                                    div_option.setAttribute("data-where", "positive");
+                                    div_option.style.borderColor = inners_questions[question].positive_color;
+                                    div_option.setAttribute("aria-label", "mid");
+                                }
+                                if (option == 1) {
+                                    div_option.setAttribute("data-where", "center");
+                                    div_option.setAttribute("aria-label", "x-sm");
+                                }
+                                if (option == 2) {
+                                    div_option.setAttribute("data-where", "negative");
+                                    div_option.style.borderColor = inners_questions[question].negative_color;
+                                    div_option.setAttribute("aria-label", "mid");
+                                }
+                                break;
+                            case 4:
+                                positive_div.classList.add("col-3");
+                                options_div.classList.add("col-6");
+                                negative_div.classList.add("col-3");
+                                if (option == 0) {
+                                    div_option.setAttribute("data-where", "positive");
+                                    div_option.style.borderColor = inners_questions[question].positive_color;
+                                    div_option.setAttribute("aria-label", "x-mid");
+                                }
+                                if (option == 1) {
+                                    div_option.setAttribute("data-where", "positive");
+                                    div_option.style.borderColor = inners_questions[question].positive_color;
+                                    div_option.setAttribute("aria-label", "x-sm");
+                                }
+                                if (option == 2) {
+                                    div_option.setAttribute("data-where", "negative");
+                                    div_option.style.borderColor = inners_questions[question].negative_color;
+                                    div_option.setAttribute("aria-label", "x-sm");
+                                }
+                                if (option == 3) {
+                                    div_option.setAttribute("data-where", "negative");
+                                    div_option.style.borderColor = inners_questions[question].negative_color;
+                                    div_option.setAttribute("aria-label", "x-mid");
+                                }
+                                break;
+                            case 5:
+                                positive_div.classList.add("col-3");
+                                options_div.classList.add("col-6");
+                                negative_div.classList.add("col-3");
+                                if (option == 0) {
+                                    div_option.setAttribute("data-where", "positive");
+                                    div_option.style.borderColor = inners_questions[question].positive_color;
+                                    div_option.setAttribute("aria-label", "x-mid");
+                                }
+                                if (option == 1) {
+                                    div_option.setAttribute("data-where", "positive");
+                                    div_option.style.borderColor = inners_questions[question].positive_color;
+                                    div_option.setAttribute("aria-label", "x-sm");
+                                }
+                                if (option == 2) {
+                                    div_option.setAttribute("data-where", "center");
+                                    div_option.setAttribute("aria-label", "sm");
+                                }
+                                if (option == 3) {
+                                    div_option.setAttribute("data-where", "negative");
+                                    div_option.style.borderColor = inners_questions[question].negative_color;
+                                    div_option.setAttribute("aria-label", "x-sm");
+                                }
+                                if (option == 4) {
+                                    div_option.setAttribute("data-where", "negative");
+                                    div_option.style.borderColor = inners_questions[question].negative_color;
+                                    div_option.setAttribute("aria-label", "x-mid");
+                                }
+                                break;
+                            case 6:
+                                positive_div.classList.add("col-2");
+                                options_div.classList.add("col-7");
+                                negative_div.classList.add("col-2");
+                                if (option == 0) {
+                                    div_option.setAttribute("data-where", "positive");
+                                    div_option.style.borderColor = inners_questions[question].positive_color;
+                                    div_option.setAttribute("aria-label", "x-mid");
+                                }
+                                if (option == 1) {
+                                    div_option.setAttribute("data-where", "positive");
+                                    div_option.style.borderColor = inners_questions[question].positive_color;
+                                    div_option.setAttribute("aria-label", "mid");
+                                }
+                                if (option == 2) {
+                                    div_option.setAttribute("data-where", "positive");
+                                    div_option.style.borderColor = inners_questions[question].positive_color;
+                                    div_option.setAttribute("aria-label", "x-sm");
+                                }
+                                if (option == 3) {
+                                    div_option.setAttribute("data-where", "negative");
+                                    div_option.style.borderColor = inners_questions[question].negative_color;
+                                    div_option.setAttribute("aria-label", "x-sm");
+                                }
+                                if (option == 4) {
+                                    div_option.setAttribute("data-where", "negative");
+                                    div_option.style.borderColor = inners_questions[question].negative_color;
+                                    div_option.setAttribute("aria-label", "mid");
+                                }
+                                if (option == 5) {
+                                    div_option.setAttribute("data-where", "negative");
+                                    div_option.style.borderColor = inners_questions[question].negative_color;
+                                    div_option.setAttribute("aria-label", "x-mid");
+                                }
+                                break;
+                            case 7:
+                                positive_div.classList.add("col-2");
+                                options_div.classList.add("col-8");
+                                negative_div.classList.add("col-2");
+                                if (option == 0) {
+                                    div_option.setAttribute("data-where", "positive");
+                                    div_option.style.borderColor = inners_questions[question].positive_color;
+                                    div_option.setAttribute("aria-label", "x-mid");
+                                }
+                                if (option == 1) {
+                                    div_option.setAttribute("data-where", "positive");
+                                    div_option.style.borderColor = inners_questions[question].positive_color;
+                                    div_option.setAttribute("aria-label", "mid");
+                                }
+                                if (option == 2) {
+                                    div_option.setAttribute("data-where", "positive");
+                                    div_option.style.borderColor = inners_questions[question].positive_color;
+                                    div_option.setAttribute("aria-label", "x-sm");
+                                }
+                                if (option == 3) {
+                                    div_option.setAttribute("data-where", "center");
+                                    div_option.setAttribute("aria-label", "sm");
+                                }
+                                if (option == 4) {
+                                    div_option.setAttribute("data-where", "negative");
+                                    div_option.style.borderColor = inners_questions[question].negative_color;
+                                    div_option.setAttribute("aria-label", "x-sm");
+                                }
+                                if (option == 5) {
+                                    div_option.setAttribute("data-where", "negative");
+                                    div_option.style.borderColor = inners_questions[question].negative_color;
+                                    div_option.setAttribute("aria-label", "mid");
+                                }
+                                if (option == 6) {
+                                    div_option.setAttribute("data-where", "negative");
+                                    div_option.style.borderColor = inners_questions[question].negative_color;
+                                    div_option.setAttribute("aria-label", "x-mid");
+                                }
+                                break;
+                            case 8:
+                                down = false;
+                                negative_div.setAttribute("class", "text-left");
+                                positive_div.setAttribute("class", "text-right");
+
+                                positive_div.classList.add("col-6");
+                                options_div.classList.add("col-12");
+                                negative_div.classList.add("col-6");
+
+                                inner_div.appendChild(options_div);
+                                inner_div.appendChild(positive_div);
+                                inner_div.appendChild(negative_div);
+                                if (option == 0) {
+                                    div_option.setAttribute("data-where", "positive");
+                                    div_option.style.borderColor = inners_questions[question].positive_color;
+                                    div_option.setAttribute("aria-label", "large");
+                                }
+                                if (option == 1) {
+                                    div_option.setAttribute("data-where", "positive");
+                                    div_option.style.borderColor = inners_questions[question].positive_color;
+                                    div_option.setAttribute("aria-label", "x-mid");
+                                }
+                                if (option == 2) {
+                                    div_option.setAttribute("data-where", "positive");
+                                    div_option.style.borderColor = inners_questions[question].positive_color;
+                                    div_option.setAttribute("aria-label", "mid");
+                                }
+                                if (option == 3) {
+                                    div_option.setAttribute("data-where", "positive");
+                                    div_option.style.borderColor = inners_questions[question].positive_color;
+                                    div_option.setAttribute("aria-label", "x-sm");
+                                }
+                                if (option == 4) {
+                                    div_option.setAttribute("data-where", "negative");
+                                    div_option.style.borderColor = inners_questions[question].negative_color;
+                                    div_option.setAttribute("aria-label", "x-sm");
+                                }
+                                if (option == 5) {
+                                    div_option.setAttribute("data-where", "negative");
+                                    div_option.style.borderColor = inners_questions[question].negative_color;
+                                    div_option.setAttribute("aria-label", "mid");
+                                }
+                                if (option == 6) {
+                                    div_option.setAttribute("data-where", "negative");
+                                    div_option.style.borderColor = inners_questions[question].negative_color;
+                                    div_option.setAttribute("aria-label", "x-mid");
+                                }
+                                if (option == 7) {
+                                    div_option.setAttribute("data-where", "negative");
+                                    div_option.style.borderColor = inners_questions[question].negative_color;
+                                    div_option.setAttribute("aria-label", "large");
+                                }
+                                break;
+                            case 9:
+                                down = false;
+
+                                negative_div.setAttribute("class", "text-left");
+                                positive_div.setAttribute("class", "text-right");
+
+                                positive_div.classList.add("col-6");
+                                options_div.classList.add("col-12");
+                                negative_div.classList.add("col-6");
+
+                                inner_div.appendChild(options_div);
+                                inner_div.appendChild(positive_div);
+                                inner_div.appendChild(negative_div);
+                                if (option == 0) {
+                                    div_option.setAttribute("data-where", "positive");
+                                    div_option.style.borderColor = inners_questions[question].positive_color;
+                                    div_option.setAttribute("aria-label", "large");
+                                }
+                                if (option == 1) {
+                                    div_option.setAttribute("data-where", "positive");
+                                    div_option.style.borderColor = inners_questions[question].positive_color;
+                                    div_option.setAttribute("aria-label", "x-mid");
+                                }
+                                if (option == 2) {
+                                    div_option.setAttribute("data-where", "positive");
+                                    div_option.style.borderColor = inners_questions[question].positive_color;
+                                    div_option.setAttribute("aria-label", "mid");
+                                }
+                                if (option == 3) {
+                                    div_option.setAttribute("data-where", "positive");
+                                    div_option.style.borderColor = inners_questions[question].positive_color;
+                                    div_option.setAttribute("aria-label", "x-sm");
+                                }
+                                if (option == 4) {
+                                    div_option.setAttribute("data-where", "center");
+                                    div_option.setAttribute("aria-label", "sm");
+                                }
+                                if (option == 5) {
+                                    div_option.setAttribute("data-where", "negative");
+                                    div_option.style.borderColor = inners_questions[question].negative_color;
+                                    div_option.setAttribute("aria-label", "x-sm");
+                                }
+                                if (option == 6) {
+                                    div_option.setAttribute("data-where", "negative");
+                                    div_option.style.borderColor = inners_questions[question].negative_color;
+                                    div_option.setAttribute("aria-label", "mid");
+                                }
+                                if (option == 7) {
+                                    div_option.setAttribute("data-where", "negative");
+                                    div_option.style.borderColor = inners_questions[question].negative_color;
+                                    div_option.setAttribute("aria-label", "x-mid");
+                                }
+                                if (option == 8) {
+                                    div_option.setAttribute("data-where", "negative");
+                                    div_option.style.borderColor = inners_questions[question].negative_color;
+                                    div_option.setAttribute("aria-label", "large");
+                                }
+                                break;
+                            default:
+                                break;
+                        }
+                        div_option.setAttribute("id", makeid(6));
+                        div_option.setAttribute("data-id", inners_questions[question].options[option].id);
+                        div_option.setAttribute("onclick", "clickable(event)");
+                        $(div_option).mouseenter(
+                            function() {
+                                $(this).css("background-color", $(this).attr("style"));
+                                // div_option.style.backgroundColor = div_option.style.borderColor;
+                            }
+                        ).mouseleave(
+                            function() {
+                                if ($(this).attr("data-status") != "selected") {
+                                    $(this).css("background-color", "");
+                                }
+                            });
+                        options_div.appendChild(div_option);
+                    }
+
+
+                    if (down) {
+                        inner_div.appendChild(positive_div);
+                        inner_div.appendChild(options_div);
+                        inner_div.appendChild(negative_div);
+                    }
+
+
+                    question_div.appendChild(div_question_text);
+                    question_div.appendChild(inner_div);
+
+                    hr = document.createElement("hr");
+                    hr.setAttribute("class", "container");
+                    hr.style.width = "70%";
+                    questions_id_div.appendChild(question_div);
+                    questions_id_div.appendChild(hr);
+                }
+            }
+        }
+        make_inactivate();
+        disable_btn();
+
+    }
+
+    function calculateAnswerPerQuestion() {}
+
+    function sendRequest(data) {
+        var xhr = new XMLHttpRequest();
+        FD = new FormData();
+        FD.append('data', JSON.stringify(data));
+        FD.append('exam_id', exam_id);
+        // FD.append('email', document.getElementById("email").value);
+        // FD.append('phone_number', document.getElementById("phone_number").value);
+        var url = "/api/exam/criteria/calculate/result/";
+        xhr.open("POST", url, true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                var returned_json = JSON.parse(xhr.responseText);
+                showResult(returned_json);
+            }
+        };
+        xhr.send(FD);
+    }
+
+    function showResult(returned_json) {
+        console.log(returned_json);
+        localStorage.setItem("returned_json", JSON.stringify(returned_json));
+        location.href = "http://" + location.host + "/api/exam/criteria/result/";
+    }
+
+
+    function next_step_required_response(event) {
+        if (event.tagName != "DIV") {
+            return;
+        }
+
+        questions_contatainer = $(event).parents().eq(3)[0];
+        first_unresponse = $(questions_contatainer).find(`[data-status='unresponsed']`)[0];
+        if (first_unresponse != $(event).parents().eq(2)[0] && $(event).parents().eq(2)[0].dataset.status != "responsed") {
+            return;
+        }
+
+
+        parent_node = event.parentNode;
+        if ($(parent_node).parents().eq(1)[0].dataset.status != "responsed") {
+            percent = (1 / question_counter) * 100;
+            addProgress(percent);
+        }
+
+        $(parent_node).parents().eq(1)[0].dataset.status = "responsed";
+        sortable_div = parent_node.getElementsByClassName("selectable");
+        for (child in sortable_div) {
+            if (sortable_div[child].tagName == "DIV") {
+                sortable_div[child].dataset.status = "unselected";
+                sortable_div[child].style.backgroundColor = "";
+                sortable_div[child].innerHTML = "";
+            }
+        }
+        switch (event.dataset.where) {
+            case "positive":
+                event.dataset.status = "selected";
+                event.style.backgroundColor = event.style.borderColor;
+                break;
+            case "center":
+                event.dataset.status = "selected";
+                event.style.backgroundColor = "#9b9faa";
+                break;
+            case "negative":
+                event.dataset.status = "selected";
+                event.style.backgroundColor = event.style.borderColor;
+                break;
+            default:
+                break;
+        }
+        i = document.createElement("i");
+        i.classList.add("fas");
+        i.classList.add("fa-check");
+        i.style.color = "white";
+        event.appendChild(i);
+        disable_btn();
+        questions_contatainer = $(parent_node).parents().eq(2)[0];
+        main_parent = questions_contatainer.getElementsByClassName("question");
+        bol = true;
+        flag = 0;
+        for (child in main_parent) {
+            if (main_parent[child].tagName == "DIV") {
+                // if (question_div == main_parent[child]) {
+                //     flag = parseInt(child) + 1;
+                // }
+                if ((main_parent[child].dataset.status == "unresponsed") && bol) {
+                    flag = child;
+                    bol = false;
+                } else {
+                    main_parent[child].classList.add("inactive");
+                }
+            }
+        }
+        if (flag == 0) {
+            if (main_parent[flag].dataset.status == "responsed") {
+                return;
+            }
+        }
+        main_parent[flag].classList.remove("inactive");
+        if (flag == 0) {
+            EPPZScrollTo.scrollVerticalToElementById(main_parent[flag].id, 20);
+        } else {
+            EPPZScrollTo.scrollVerticalToElementById(main_parent[parseInt(flag) - 1].id, 20);
+        }
+    }
+
+    function disable_btn() {
+        if (!responsed_all()) {
+            if (require_response) {
+                $('#btn-exam').attr('disabled', 'disabled');
+            }
+        } else {
+            $('#btn-exam').removeAttr('disabled');
+        }
+    }
+
+
+    last_unrequired_index = -1;
+
+    function next_step_unrequired_response(event) {
+        if (event.tagName != "DIV") {
+            return;
+        }
+
+        // questions_contatainer = $(event).parents().eq(3)[0];
+        // first_unresponse = $(questions_contatainer).find(`[data-status='unresponsed']`)[0];
+        // if (first_unresponse != $(event).parents().eq(2)[0]) {
+        //     return;
+        // }
+
+        parent_node = event.parentNode;
+        if ($(parent_node).parents().eq(1)[0].dataset.status != "responsed") {
+            percent = (1 / question_counter) * 100;
+            addProgress(percent);
+        }
+        $(parent_node).parents().eq(1)[0].dataset.status = "responsed";
+        sortable_div = parent_node.getElementsByClassName("selectable");
+        for (child in sortable_div) {
+            if (sortable_div[child].tagName == "DIV") {
+                sortable_div[child].dataset.status = "unselected";
+                sortable_div[child].style.backgroundColor = "";
+                sortable_div[child].innerHTML = "";
+                // sortable_div[child].removeChild(sortable_div[child].lastElementChild);
+            }
+        }
+        switch (event.dataset.where) {
+            case "positive":
+                event.dataset.status = "selected";
+                event.style.backgroundColor = event.style.borderColor;
+                break;
+            case "center":
+                event.dataset.status = "selected";
+                event.style.backgroundColor = "#9b9faa";
+                break;
+            case "negative":
+                event.dataset.status = "selected";
+                event.style.backgroundColor = event.style.borderColor;
+                break;
+            default:
+                break;
+        }
+        i = document.createElement("i");
+        i.classList.add("fas");
+        i.classList.add("fa-check");
+        i.style.color = "white";
+        event.appendChild(i);
+        questions_contatainer = $(parent_node).parents().eq(2)[0];
+        main_parent = questions_contatainer.getElementsByClassName("question");
+        bol = true;
+        flag = -1;
+        clicked_place = 0;
+        for (child in main_parent) {
+            if (main_parent[child].tagName == "DIV") {
+                if (main_parent[child] == $(parent_node).parents().eq(1)[0]) {
+                    clicked_place = child;
+                }
+            }
+        }
+        for (child in main_parent) {
+            if (main_parent[child].tagName == "DIV") {
+                if (child > clicked_place) {
+                    if ((main_parent[child].dataset.status == "unresponsed") && bol) {
+                        flag = child;
+                        bol = false;
+                    }
+                }
+            }
+        }
+        $(parent_node).parents().eq(1)[0].classList.add("inactive");
+        if (flag != -1) {
+            if (flag == 0) {
+                if (main_parent[flag].dataset.status == "responsed") {
+                    return;
+                }
+            }
+            if (flag == 0) {
+                EPPZScrollTo.scrollVerticalToElementById(main_parent[flag].id, 20);
+            } else {
+                EPPZScrollTo.scrollVerticalToElementById(main_parent[parseInt(flag) - 1].id, 20);
+            }
+        } else {
+            EPPZScrollTo.scrollVerticalToElementById("btn-exam", 20);
+
+        }
+    }
+
+
+    function clickable(event) {
+        if (require_response == true) {
+            next_step_required_response(event.target);
+        } else {
+            next_step_unrequired_response(event.target);
+        }
+    }
+
+    function make_inactivate_require_response() {
+        question_div = document.getElementById("questions");
+        questions_div = question_div.getElementsByClassName("question");
+        for (question in questions_div) {
+            if (questions_div[question].tagName == "DIV") {
+                if (question != 0) {
+                    questions_div[question].classList.add("inactive");
+                }
+            }
+        }
+    }
+
+    function make_inactivate() {
+        if (require_response == true) {
+            make_inactivate_require_response();
+        }
+    }
+
+    function saveStatus() {
+        nodes = document.getElementById("questions").childNodes
+        for (node in nodes) {
+            if (nodes[node].tagName == "DIV" && nodes[node].dataset.status == "responsed") {
+                response_json[nodes[node].dataset.id] = $("#" + nodes[node].id + " div[data-status=selected]")[0].dataset.id
+            }
+        }
+    }
+
+    function responsed_all() {
+        if ($("#questions div[data-status=unresponsed]").length != 0) {
+            return false;
+        }
+        return true;
+    }
+
+    function add_progress() {
+        if (!require_response) {
+            if (!responsed_all()) {
+                percent = ($("#questions div[data-status=unresponsed]").length / question_counter) * 100;
+                addProgress(percent);
+            }
+        }
+    }
+
+    function clickNext(event) {
+        if (require_response) {
+            if (!responsed_all()) {
+                return;
+            }
+        }
+        saveStatus();
+        if (is_end) {
+            sendRequest(response_json);
+            // event.target.innerText = "مشاهده نتیجه";
+        } else {
+            add_progress();
+            if (require_response) {
+                $('#btn-exam').attr('disabled', 'disabled');
+            }
+            if (is_categorized) {
+                showNotRandomQuestion();
+            } else {
+                showRandomQuestion();
+            }
+
+        }
+    }
+
+
+    var EPPZScrollTo = {
+
+        scrollVerticalToElementById: function(id, padding) {
+            document.getElementById(id).scrollIntoView({
+                behavior: "smooth"
+            });
+        }
+    };
+</script> -->

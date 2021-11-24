@@ -1,0 +1,50 @@
+<app-loading *ngIf="loading"></app-loading>
+<div *ngIf="!loading" [@fadePost]="!this.loading" class="row p-md-0 m-md-0">
+    <div class="col-12 cas p-3 mb-3">
+        <h1 class="text-bold mb-2">درباره {{magDetail?.name}}</h1>
+        <p class="text-secondary text-justify word-space">
+            {{info?.info}}
+        </p>
+        <div class="col-12 py-4">
+            <div class="row">
+                <h4 class="col-6 text-bold pr-0">وبسایت</h4>
+                <div class="col-6 text-bold pr-0 mb-4">
+                    <a class="text-primary" href="https://{{info?.website}}">
+                            {{info?.website}}</a>
+                </div>
+                <h4 class="col-6 text-bold pr-0">نوع فعالیت</h4>
+                <p class="col-6 pr-0 mb-4 text-secondary">
+                    {{info?.activity_type}}
+                </p>
+                <h4 class="col-6 text-bold pr-0">میزان استخدام</h4>
+                <p class="col-6 pr-0 mb-4 text-secondary">
+                    {{info?.activity_type}}
+                </p>
+                <h4 class="col-6 text-bold pr-0">تاریخ تاسیس</h4>
+                <p class="col-6 pr-0 mb-4 text-secondary">
+                    {{info?.create_date}}
+                </p>
+                <h4 class="col-6 text-bold pr-0">تخصص ها</h4>
+                <p class="col-6 pr-0 mb-4 text-secondary">
+                    {{info?.specialities}}
+                </p>
+                <h4 class="col-6 text-bold pr-0">آدرس اصلی</h4>
+                <p class="col-6 pr-0 mb-4 text-secondary">
+                    {{info?.address}}
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 cas p-3 mb-3">
+        <h1 class="">موقعیت مکانی آفرینه</h1>
+        <p class="text-secondary text-justify word-space">
+            برای یافتن مکان دقیق باید زوم کنید
+        </p>
+        <div class="row px-0">
+            <div class="col-12 px-0">
+                <iframe class="map w-100 mx-0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d476.3828806347284!2d52.68078249996221!3d36.561122776730485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8f88155391a6cb%3A0x381087fd25f45508!2z2K_Yp9mG2LTar9in2Ycg2LXZhti52KrbjCDZhtmI2LTbjNix2YjYp9mG24wg2KjYp9io2YQ!5e0!3m2!1sfa!2sca!4v1633688423426!5m2!1sfa!2sca"
+                    allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </div>
+</div>

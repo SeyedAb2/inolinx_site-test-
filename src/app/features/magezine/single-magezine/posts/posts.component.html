@@ -1,0 +1,93 @@
+<div class="position-relative">
+    <div *ngIf="!loading" [@fadePost]="!this.loading" class="row d-flex justify-content-start mx-md-0">
+        <aside class="col-12 col-md-3 col-custom-right-right d-none d-md-block">
+            <div class="row pe-2 ps-lg-0 pe-lg-0 ps-md-2 ps-lg-0 gy-4">
+                <div class="col-12 border-col-setting">
+                    <div class="row mx-0 w-100">
+                        <div class="img-logo-sidebar col-8 mx-auto my-3 px-0">
+                            <img (load)="loadImage()" [hidden]="imgLoad == false" *ngIf="magDetail?.logo != null" class="img-logo-sidebar w-100 h-auto" src="{{magDetail?.logo}}" alt="">
+                            <img (load)="loadImage()" [hidden]="imgLoad == false" *ngIf="magDetail?.logo == null" class="img-logo-sidebar w-100 h-auto" src="assets/image/default.jpg" alt="">
+                        </div>
+                        <h4 class="col-12 mt-1 mb-2 text-center font-family px-0 px-lg-1">
+                            {{magDetail?.slogan}}
+                        </h4>
+                    </div>
+                </div>
+                <div class="col-12 border-col-setting">
+                    <div class="row direction py-0 bg-white">
+                        <div class="d-flex align-items-center col-12 font-weight-bold border-bottom pe-0">
+                            <a class="btn" style="cursor: default;">
+                                <i class="fas fa-list-ul category-icon-modal"></i>
+                            </a><span class="d-none d-md-inline">دسته بندی </span>
+                        </div>
+                        <div *ngIf="categories.length == 0" class="text-center text-secondary font-weight-bold py-2 font-family">
+                            دسته بندی ثبت نشده است
+                        </div>
+                        <div *ngIf="categories.length != 0">
+                            <div *ngFor="let category0 of categories" class="modal-category-main mt-2 col-12 p-0 d-lg-block">
+                                <div id="accordion">
+                                    <div class="mb-2 ps-2">
+                                        <div class="border-bottom pb-2" [id]="'heading'+category0.id">
+                                            <h5 class="mb-0 " [ngClass]="category0.categories.length ==0 ? 'd-flex align-items-center' : 'mt-2' ">
+                                                <i *ngIf="category0.categories.length ==0 " class="fas fa-circle p-0 d-inline category_button-non"></i>
+                                                <a *ngIf="category0.categories.length!=0" href="#" class="p-0 d-inline  category_button collapsed " data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse'+category0.id" aria-expanded="true" [attr.aria-controls]="'collapse'+category0.id"></a>
+                                                <a (click)="callTwoMethod($event,category0.id)" [ngClass]="category0.categories.length ==0 ? 'pe-1' : '' " class="category-main-text-link">
+                                                    <p class="category-main-text d-inline">{{category0.tile}}</p>
+                                                </a>
+                                            </h5>
+                                        </div>
+
+                                        <div [id]="'collapse'+category0.id" class="collapse me-3 " [attr.aria-labelledby]="'heading'+category0.id" data-bs-parent="#accordion">
+                                            <div class="border-right" *ngIf="category0.categories.length > 0">
+                                                <div class=" mt-2 me-1 col-12 p-0 ">
+                                                    <div id="accordion1">
+                                                        <div class="mb-2 ps-2" *ngFor="let category2 of category0.categories">
+                                                            <div class="border-bottom pb-2" [id]="'subheading'+category2.id">
+                                                                <h5 class="mb-0" [ngClass]="category2.categories.length ==0 ? 'd-flex align-items-center' : 'mt-2' ">
+                                                                    <i *ngIf="category2.categories.length ==0 " class="fas fa-circle p-0 d-inline category_button-non"></i>
+                                                                    <a *ngIf="category2.categories.length!=0" class="p-0 d-inline category_button collapsed " data-bs-toggle="collapse" [attr.data-bs-target]="'#subcollapse'+category2.id" aria-expanded="true" [attr.aria-controls]="'subcollapse'+category2.id"></a>
+                                                                    <a (click)="callTwoMethod($event,category2.id)" [ngClass]="category2.categories.length ==0 ? 'pe-1' : '' " class="category-main-text-link">
+                                                                        <p class="category-main-text d-inline">{{category2.tile}}</p>
+                                                                    </a>
+                                                                </h5>
+                                                            </div>
+                                                            <div [id]="'subcollapse'+category2.id" *ngIf="category2.categories.length > 0" class="collapse me-3 border-right" [attr.aria-labelledby]="'subheading'+category2.id" data-bs-parent="#accordion1">
+                                                                <div class="my-1 ps-2 " *ngFor="let category3 of category2.categories">
+                                                                    <div class="border-bottom pb-2" [id]="'subSheading'+category3.id">
+                                                                        <h5 class="mb-0" [ngClass]="category3.categories.length ==0 ? 'd-flex align-items-center' : 'mt-2' ">
+                                                                            <i *ngIf="category3.categories.length ==0 " class="fas fa-circle p-0 d-inline category_button-non"></i>
+                                                                            <a *ngIf="category3.categories.length!=0" class="p-0 d-inline category_button collapsed " data-bs-toggle="collapse" [attr.data-bs-target]="'#subScollapse'+category3.id" aria-expanded="true" [attr.aria-controls]="'subScollapse'+category3.id"></a>
+                                                                            <a (click)="callTwoMethod($event,category3.id)" [ngClass]="category3.categories.length ==0 ? 'pe-1' : '' " class="category-main-text-link">
+                                                                                <p class="category-main-text d-inline">{{category3.tile}}</p>
+                                                                            </a>
+                                                                        </h5>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <aside class="col-12 col-md-9 col-custom-right-center px-md-2 px-lg-0">
+            <div class="section-control row mx-1 mx-md-0 me-lg-2 ms-lg-1">
+
+                <!--- Start Articles Section -->
+                <section class="col-12 px-1">
+                    <div class="container-fluid px-2">
+                        <app-center-dyPost></app-center-dyPost>
+                    </div>
+                </section>
+                <!--- End Articles Section -->
+            </div>
+        </aside>
+    </div>
+</div>

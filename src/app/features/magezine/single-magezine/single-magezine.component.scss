@@ -1,0 +1,82 @@
+@import '../magezine.component.scss';
+/// Tab /////////////////////////////////
+.tab {
+    @include borderTopCustom(0, 1);
+    margin-top: 10px !important;
+    position: relative;
+    .col-1 {
+        font-family: vazir !important;
+        font-size: 1rem !important;
+        font-weight: bold !important;
+        text-decoration: none;
+        color: rgb(77, 77, 77) !important;
+        border-radius: 0;
+        &:hover {
+            color: black !important;
+        }
+    }
+    .active_tab {
+        border-bottom: 2px solid #005f10 !important;
+    }
+}
+
+.sticky-section {
+    box-shadow: 0 0 5px 1px rgb(177, 177, 177);
+    position: fixed;
+    top: 73.1px;
+    z-index: 1001;
+    .w-custom-logo {
+        width: 35px !important;
+        height: 35px !important;
+        img {
+            width: 35px !important;
+            height: 35px !important;
+            @include borderCustom(1, 1);
+            border-color: rgb(221, 221, 221);
+        }
+    }
+    .com-name {
+        font-size: 0.95rem !important;
+        font-weight: 900;
+        margin-right: 7px;
+        .fa-check-circle {
+            font-size: 0.8rem !important;
+            color: $TickColor;
+        }
+    }
+    .com-bio {
+        font-size: 0.8rem !important;
+        font-weight: 600;
+        margin-right: 7px;
+        margin-bottom: 0 !important;
+    }
+    .vmb {
+        &:nth-child(1) {
+            width: 130px !important;
+        }
+        width: 100px !important;
+        .view-more-btn {
+            height: 35px;
+            @include borderCustom(7, 0);
+            background-color: $BlueColor;
+            color: white !important;
+            font-size: 0.9rem;
+            font-weight: normal !important;
+            text-align: center;
+            font-family: vazir !important;
+            @media(min-width: 768px) {
+                transition: all 0.45s;
+                &:hover {
+                    background-color: #004ef5
+                }
+            }
+        }
+    }
+}
+
+///GIF LOAD
+img {
+    background-image: url('../../../../assets/image/load.gif');
+    background-repeat: no-repeat;
+    background-size: cover;
+}

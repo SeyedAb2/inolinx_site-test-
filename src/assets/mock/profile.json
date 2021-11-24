@@ -1,0 +1,11 @@
+{
+    "data": [{
+        "username": "Ali",
+        "profile_text": "به آفرینه خوش آمدید لطفا برای کسب اطلاعات بیشتر باماهمراه باشید",
+        "banner_photo": "assets/image/msi-banner.jpg",
+        "profile_photo": "assets/image/mbti-logo.png",
+        "description": "به آفرینه خوش آمدید لطفا برای کسب اطلاعات بیشتر باماهمراه باشید",
+        "name": "علی",
+        "lastname": "فلاح"
+    }]
+}

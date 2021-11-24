@@ -1,0 +1,154 @@
+<div class="container-fluid ">
+    <section class="row d-flex justify-content-between px-md-5 p-3 gy-3 ">
+        <aside class="col-12 col-md-7">
+            <div class="row p-md-0 m-md-0">
+                <div class="col-12 cas p-3 mb-3">
+                    <h1 class="text-bold mb-2">درباره اینولینکس</h1>
+                    <p class="text-secondary text-justify word-space">
+                        لورم ایپسوم یک متن ساختگی برای طراحی و نمایش محتوای بی ربط است اما این متن نوشته شده هیچ ربطی به لورم ایپسوم ندارد. این چیزی که میبینید صرفا یک متن ساختگی تر نسبت به لورم ایپسوم است تا شما بتواندی با گرفتن خروجی در سایت و موبایل یا هر دستگاه دیگر خروجی
+                        بگیرید و نگاه کنید که ساختار کد نوشتاری سایت با لورم به چه صورتی در آمده است. با تشکر از سایت ساختگی نوشتار لورم ایپسوم آقای بوق
+                    </p>
+                    <div class="col-12 py-4">
+                        <div class="row">
+                            <h4 class="col-6 text-bold pr-0">وبسایت</h4>
+                            <div class="col-6 text-bold pr-0 mb-4">
+                                <a class="text-primary" href="https://inolinx.com/">
+                                    https://inolinx.com/
+                                </a>
+                            </div>
+                            <h4 class="col-6 text-bold pr-0">نوع فعالیت</h4>
+                            <p class="col-6 pr-0 mb-4 text-secondary">
+                                کارآفرینی و کسب و کار - خصوصی
+                            </p>
+                            <h4 class="col-6 text-bold pr-0">میزان استخدام</h4>
+                            <p class="col-6 pr-0 mb-4 text-secondary">
+                                ۱۲۰ + کارمند
+                            </p>
+                            <h4 class="col-6 text-bold pr-0">تاریخ تاسیس</h4>
+                            <p class="col-6 pr-0 mb-4 text-secondary">
+                                ۲۰۱۸
+                            </p>
+                            <h4 class="col-6 text-bold pr-0">تخصص ها</h4>
+                            <p class="col-6 pr-0 mb-4 text-secondary">
+                                اشتغال/بازاریابی/کسب و کار/
+                            </p>
+                            <h4 class="col-6 text-bold pr-0">آدرس اصلی</h4>
+                            <p class="col-6 pr-0 mb-4 text-secondary">
+                                تهران,شهرک طالقانی,ساحتمان نگین
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 cas p-3 mb-3">
+                    <h1 class="">موقعیت مکانی آفرینه</h1>
+                    <p class="text-secondary text-justify word-space">
+                        برای یافتن مکان دقیق باید زوم کنید
+                    </p>
+                    <div class="row px-0">
+                        <div class="col-12 px-0">
+                            <iframe class="map w-100 mx-0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d476.3828806347284!2d52.68078249996221!3d36.561122776730485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8f88155391a6cb%3A0x381087fd25f45508!2z2K_Yp9mG2LTar9in2Ycg2LXZhti52KrbjCDZhtmI2LTbjNix2YjYp9mG24wg2KjYp9io2YQ!5e0!3m2!1sfa!2sca!4v1633688423426!5m2!1sfa!2sca"
+                                allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <!--  -->
+        <aside class="col-12 col-md-5 form-contact-parent px-0 px-md-3" (scroll)="onscroll()">
+            <div class="form-child" [ngClass]="stickyController?'sticky-custom-top':''">
+                <section class="row mx-0 mr-0 pt-0">
+                    <div class="col-12 p-0">
+                        <article class="p-0 mb-4 bg-white">
+                            <div class="container bg-light">
+                                <h1 class="text-center p2 font-weight-bold font-family">
+                                    ارسال پیام به مدیریت
+                                </h1>
+                                <!-- <div class="alert alert-danger">
+                                    پر کردن فیلد های نام، ایمیل و متن پیغام الزامی میباشد .
+                                </div> -->
+                                <form [formGroup]="contactForm" (ngSubmit)="submit()">
+                                    <div class="row">
+                                        <div class="col-25">
+                                            <label for="fullName">نام و نام خانوادگی </label>
+                                        </div>
+                                        <div *ngIf="!contactForm.get('fullName')?.valid && contactForm.get('fullName')?.touched" class="alert alert-danger d-flex align-items-center" role="alert">
+                                            <i class="fas fa-lg fa-exclamation-triangle"></i>
+                                            <div class="me-2">
+                                                نام و نام خانوادگی را وارد کنید
+                                            </div>
+                                        </div>
+                                        <div class="col-75">
+                                            <input formControlName="fullName" maxlength="48" type="text" id="fname" placeholder="نام کامل خود را وارد کنید">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-25">
+                                            <label for="email">پست الگترونیکی</label>
+                                        </div>
+                                        <div *ngIf="!contactForm.get('email')?.valid && contactForm.get('email')?.touched" class="alert alert-danger d-flex align-items-center" role="alert">
+                                            <i class="fas fa-lg fa-exclamation-triangle"></i>
+                                            <div class="me-2">
+                                                ایمیل معتبر نیست
+                                            </div>
+                                        </div>
+                                        <div class="col-75">
+                                            <input formControlName="email" maxlength="64" type="text" id="email" placeholder="ایمیل خود را وارد کنید">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-25">
+                                            <label for="phone">شماره تماس </label>
+                                        </div>
+                                        <div *ngIf="!contactForm.get('phone')?.valid && contactForm.get('phone')?.touched" class="alert alert-danger d-flex align-items-center" role="alert">
+                                            <i class="fas fa-lg fa-exclamation-triangle"></i>
+                                            <div class="me-2">
+                                                شماره همراه معتبر نیست
+                                            </div>
+                                        </div>
+                                        <div class="col-75">
+                                            <input formControlName="phone" type="number" onKeyPress="if(this.value.length==11) return false;" id="phone" placeholder="*******۰۹۱۲">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-25">
+                                            <label for="subject">عنوان پیغام </label>
+                                        </div>
+                                        <div *ngIf="!contactForm.get('subject')?.valid && contactForm.get('subject')?.touched" class="alert alert-danger d-flex align-items-center" role="alert">
+                                            <i class="fas fa-lg fa-exclamation-triangle"></i>
+                                            <div class="me-2">
+                                                عنوانی برای پیام خود انتخاب کنید
+                                            </div>
+                                        </div>
+
+                                        <div class="col-75">
+                                            <input formControlName="subject" maxlength="48" type="text" id="subject" placeholder="عنوان پیغام ">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-25">
+                                            <label for="text">پیام </label>
+                                        </div>
+                                        <div *ngIf="!contactForm.get('text')?.valid && contactForm.get('text')?.touched" class="alert alert-danger d-flex align-items-center" role="alert">
+                                            <i class="fas fa-lg fa-exclamation-triangle"></i>
+                                            <div class="me-2">
+                                                متن پیام را وارد کنید
+                                            </div>
+                                        </div>
+                                        <div class="col-75">
+                                            <textarea formControlName="text" maxlength="320" id="text" placeholder="متن پیام خود را وارد نمایید" style="max-height:350px ; height:200px ;  min-height:200px"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-top : 2rem;padding-right: 0.75rem;">
+                                        <button type="submit" [disabled]="!contactForm.valid" mat-raised-button class="col-2">ارسال</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+            </div>
+        </aside>
+    </section>
+
+</div>

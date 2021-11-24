@@ -1,0 +1,28 @@
+<form [formGroup]="reportGroup" (ngSubmit)="onSubmit()">
+    <h2 mat-dialog-title>گزارش پست
+        <mat-dialog-content class="font-family">
+            لطفا موارد زیر را پر کنید
+        </mat-dialog-content>
+    </h2>
+    <mat-form-field appearance="fill">
+        <mat-label>پست الکترونیکی</mat-label>
+        <input formControlName="email" matInput placeholder="پست الکترونیکی خودرا وارد کنید">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>مورد گزارش</mat-label>
+        <mat-select #select formControlName="select">
+            <mat-option value="1">محتوای تقلبی یا کپی</mat-option>
+            <mat-option value="2">استفاده از کلمات منشوری</mat-option>
+            <mat-option value="3">توهین به اشخاص،ادیان،مذاهب،جریان و...</mat-option>
+            <mat-option value="4">هیچکدام</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field *ngIf="reportGroup.value.select == '4'" appearance="fill">
+        <mat-label>متن گزارش</mat-label>
+        <textarea formControlName="selectExtra" matInput></textarea>
+    </mat-form-field>
+    <mat-dialog-actions>
+        <button mat-stroked-button mat-dialog-close>انصراف</button>
+        <button [disabled]="!reportGroup.valid" type="submit" mat-stroked-button mat-dialog-close>ارسال گزارش</button>
+    </mat-dialog-actions>
+</form>

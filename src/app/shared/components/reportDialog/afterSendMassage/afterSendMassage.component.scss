@@ -1,0 +1,19 @@
+button[mat-stroked-button] {
+    font-family: vazir !important;
+    box-shadow: 0 1px 3px 0 #ccc;
+    border-radius: 20px;
+    background-color: rgb(231, 231, 231) !important;
+    direction: ltr;
+    float: left;
+}
+
+mat-dialog-content {
+    font-weight: bold;
+    font-size: 1.2rem;
+    height: 30px;
+}
+
+h2 {
+    font-size: 1rem;
+    color: rgb(145, 145, 145);
+}

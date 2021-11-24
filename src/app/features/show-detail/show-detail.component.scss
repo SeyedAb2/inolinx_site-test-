@@ -1,0 +1,365 @@
+@import "../../../assets/scss/base.scss";
+.image-border {
+    @include borderCustom(7, 1.5);
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.img-responsive {
+    width: 100px !important;
+    height: 100px !important;
+}
+
+.tab {
+    @include borderTopCustom(0, 1);
+    margin-top: 10px !important;
+    position: relative;
+    .col-1 {
+        font-family: vazir !important;
+        font-size: 1rem !important;
+        font-weight: bold !important;
+        text-decoration: none;
+        color: rgb(77, 77, 77) !important;
+        border-radius: 0;
+        &:hover {
+            color: black !important;
+        }
+    }
+    .active_tab {
+        border-bottom: 2px solid #005f10 !important;
+    }
+}
+
+.sticky-section {
+    box-shadow: 0 0 5px 1px rgb(177, 177, 177);
+    position: fixed;
+    top: 73.1px;
+    z-index: 1001;
+    .w-custom-logo {
+        width: 35px !important;
+        height: 35px !important;
+        img {
+            width: 35px !important;
+            height: 35px !important;
+        }
+    }
+    .com-name {
+        font-size: 0.95rem !important;
+        font-weight: 900;
+        margin-right: 7px;
+        .fa-check-circle {
+            font-size: 0.8rem !important;
+            color: $TickColor;
+        }
+    }
+    .com-bio {
+        font-size: 0.8rem !important;
+        font-weight: 600;
+        margin-right: 7px;
+        margin-bottom: 0 !important;
+    }
+    .vmb {
+        &:nth-child(1) {
+            width: 130px !important;
+        }
+        width: 100px !important;
+        .view-more-btn {
+            height: 35px;
+            @include borderCustom(7, 0);
+            background-color: $BlueColor;
+            color: white !important;
+            font-size: 0.9rem;
+            font-weight: normal !important;
+            text-align: center;
+            font-family: vazir !important;
+            @media(min-width: 768px) {
+                transition: all 0.45s;
+                &:hover {
+                    background-color: #004ef5
+                }
+            }
+        }
+    }
+}
+
+.post-view {
+    mat-icon {
+        font-size: 1rem;
+        color: #616161;
+    }
+}
+
+.circle {
+    border-radius: 50% !important;
+}
+
+.sticky-custom {
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 100px;
+    z-index: 100 !important;
+}
+
+.overflow {
+    max-height: 500px !important;
+    overflow-y: auto;
+    border-radius: 7px;
+    scrollbar-color: #636363 transparent !important;
+    scrollbar-width: none !important;
+    padding-left: 1px !important;
+    @media (min-width: 1700px) {
+        max-height: 700px !important;
+    }
+    @media (min-width:2000px) {
+        max-height: 100% !important;
+    }
+}
+
+.overflow::-webkit-scrollbar {
+    background: none;
+    display: block;
+    width: 0px;
+    height: 10px !important;
+}
+
+.overflow::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.overflow::-webkit-scrollbar-thumb {
+    background-color: #afafaf;
+    border-radius: 10px;
+    border-right: none;
+    border-left: none;
+}
+
+.overflow::-webkit-scrollbar-track-piece:end {
+    background: transparent;
+    margin-bottom: 10px;
+}
+
+.overflow::-webkit-scrollbar-track-piece:start {
+    background: transparent;
+    margin-top: 10px;
+}
+
+////////////////////////////////////////////////////////////////
+.banner-sidebar {
+    width: 100%;
+    height: 60px;
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        @include borderRadiusCustom(7, 7, 0, 0)
+    }
+}
+
+.logo-sidebar {
+    border-radius: 50%;
+    top: 22px !important;
+    img {
+        width: 70px !important;
+        height: 70px !important;
+        border-radius: 50%;
+        border: 1px solid #ccc !important;
+    }
+    @media (min-width: 768px) {
+        top: 20px;
+        img {
+            width: 60px !important;
+            height: 60px !important;
+        }
+    }
+    @media (min-width: 992px) {
+        top: 22px;
+        img {
+            width: 65px !important;
+            height: 65px !important;
+        }
+    }
+    @media (min-width: 1024px) {
+        top: 22px;
+        img {
+            width: 70px !important;
+            height: 70px !important;
+        }
+    }
+}
+
+.author-sidebar {
+    font-family: vazir !important;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.bio-sidebar {
+    font-size: 0.85rem;
+    font-family: vazir !important;
+    color: rgb(114, 114, 114);
+}
+
+.contact-button {
+    border-radius: 20px;
+    color: white;
+    &:hover {
+        color: white transparent;
+    }
+}
+
+article {
+    transition: all 0.45s;
+    &:hover {
+        box-shadow: 0 0 12px 0px rgb(202, 202, 202);
+    }
+    .w-header-custom {
+        @media (min-width: 1320px) {
+            width: 380px !important;
+            .p-3 {
+                width: 100%;
+                padding-left: 0!important;
+            }
+            .w-custom-detail {
+                width: 200px !important;
+            }
+        }
+        @media (max-width: 1320px) {
+            width: 390px !important;
+            .p-3 {
+                width: 100%;
+                padding-left: 0!important;
+            }
+            .w-custom-detail {
+                width: 200px !important;
+            }
+        }
+        @media (max-width: 1024px) {
+            width: 340px !important;
+            .p-3 {
+                width: 100%;
+                padding-left: 0!important;
+            }
+            .w-custom-detail {
+                width: 200px !important;
+            }
+        }
+        @media (max-width: 768px) {
+            width: 320px !important;
+            .p-3 {
+                width: 100%;
+                padding-left: 0!important;
+            }
+            .w-custom-detail {
+                width: 200px !important;
+            }
+        }
+        @media (max-width: 425px) {
+            width: 230px !important;
+            .p-3 {
+                width: 100%;
+                padding-left: 0!important;
+            }
+            .w-custom-detail {
+                width: 160px !important;
+            }
+        }
+        @media (max-width: 350px) {
+            width: 210px !important;
+            .p-3 {
+                width: 100%;
+                padding-left: 0!important;
+            }
+            .w-custom-detail {
+                width: 140px !important;
+            }
+        }
+    }
+    .w-custom-menu {
+        width: 50px !important;
+        height: 50px !important;
+        button {
+            height: 37px;
+            width: 37px !important;
+        }
+    }
+    .w-custom-logo {
+        width: 50px !important;
+        height: 50px !important;
+        @include borderCustom(4, 1)
+    }
+    .w-custom-detail {
+        width: 81% !important;
+        height: 50px !important;
+        .com-name {
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .fa-check-circle {
+            color: $TickColor !important;
+        }
+        .fa-clock {
+            color: $grayColor !important;
+        }
+        .post-date {
+            color: $grayColor !important;
+        }
+    }
+    .post-title {
+        font-family: vazir;
+        background-color: $backgroundTitle;
+        font-size: 1.2rem;
+        font-weight: bold;
+        line-height: 2rem;
+        color: rgb(53, 53, 53) !important;
+        padding: 10px 20px !important;
+        transition: all 0.3s;
+    }
+    .post-img {
+        width: 100%;
+        height: auto;
+    }
+    .post-text-detail {
+        text-align: justify;
+        font-size: 0.94rem;
+        line-height: 1.7rem;
+        padding: 25px 20px 5px 20px !important;
+    }
+    button {
+        width: 100px !important;
+    }
+    .border-custom {
+        @include borderTopCustom(0, 1);
+        .post-author {
+            @media (min-width: 768px) {
+                transition: all 0.45s;
+                &:hover {
+                    opacity: 0.85;
+                }
+            }
+            @media (max-width: 768px) {
+                transition: all 0.15s;
+                &:active {
+                    opacity: 0.85;
+                }
+            }
+            .author-img {
+                width: 35px;
+                height: 35px;
+                border-radius: 50%;
+                cursor: pointer;
+            }
+            .author-name {
+                margin-right: 10px;
+                font-size: 0.75rem;
+                color: #616161;
+                cursor: pointer;
+            }
+        }
+        .post-view {
+            mat-icon {
+                font-size: 1rem !important;
+                color: #616161 !important;
+            }
+        }
+    }
+}

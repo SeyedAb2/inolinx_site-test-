@@ -1,0 +1,35 @@
+$darkYellowColor: #ff9d2e;
+$orangColor: #ff7033;
+$LighBlueColor: #00b2ff;
+$OpacityLighBlueColor: rgb(0, 128, 255, 0.7);
+$BlueColor: #0080ff;
+$DarkBlueColor: #01468b;
+$darkColor: #475159;
+$grayColor: #919191;
+$TickColor: rgb(0, 162, 255);
+$borderCustomColor:#a5a5a578;
+$backgroundColor:#ececec;
+$backgroundTitle:#b3b3b3;
+@mixin borderRadiusCustom($tl: 7, $tr: 7, $br: 7, $bl: 7, $borderSize:1.5, $borderColor:borderCustomColor) {
+    border-radius: $tl+px $tr+px $br+px $bl+px;
+    border: $borderSize+px $borderColor solid;
+    background-color: #fff;
+}
+
+@mixin borderCustom($borderRadiusSize: 7, $borderSize:1.5) {
+    border-radius: $borderRadiusSize+px;
+    border: $borderSize+px $borderCustomColor solid;
+    background-color: #fff;
+}
+
+@mixin borderBottomCustom($borderRadiusSize: 7, $borderSize:1.5) {
+    border-radius: borderRadiusSize+px;
+    border-bottom: $borderSize+px $borderCustomColor solid;
+    background-color: #fff;
+}
+
+@mixin borderTopCustom($borderRadiusSize: 7, $borderSize:1.5) {
+    border-radius: borderRadiusSize+px;
+    border-top: $borderSize+px $borderCustomColor solid;
+    background-color: #fff;
+}

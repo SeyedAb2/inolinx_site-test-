@@ -1,0 +1,135 @@
+<div class="container-fluid">
+
+    <section class="row d-flex justify-content-center px-0 px-md-2 px-lg-0">
+        <aside class="col-12 col-lg-8 col-custom-right ps-md-3">
+            <div class="row d-flex justify-content-start">
+                <aside class="col-12 col-md-3 col-custom-right-right d-none d-md-block px-lg-0">
+                    <div class="row pe-2 ps-lg-0 pe-lg-0">
+                        <div class="col-12 border-col-setting">
+                            <div class="row mx-0 w-100">
+                                <div class="col-12 px-0">
+                                    <img class="img-responsive w-100 h-auto" src="assets/image/ino.jpg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+                <aside class="col-12 col-md-9 col-custom-right-center px-md-2 px-lg-1 pe-lg-0">
+                    <div class="section-control row mx-1 mx-md-0 me-lg-4 ms-lg-1">
+                        <section class="col-12 px-1 mb-4">
+                            <div class="container-fluid px-2">
+                                <app-loading *ngIf="loading"></app-loading>
+                                <app-notFound *ngIf="!loading && errorStatus" [@fadePost]="!this.loading"></app-notFound>
+                                <div *ngIf="!loading && !errorStatus" [@fadePost]="!this.loading" class="row gy-4">
+                                    <article *ngFor="let post of AllPost" class="col-12 border-col-setting bg-white px-0">
+                                        <div class="d-flex row align-items-start justify-content-between px-3">
+                                            <div class="col-10 col-md-4 col-lg-11 w-header-custom ps-0">
+                                                <div class="row w-100 justify-content-start py-3 px-0 mx-0">
+                                                    <div class="col-2 cursor w-custom-logo ms-2 px-0" (click)="onActivate($event)" [routerLink]="['/katibe',post.magazine.username]">
+                                                        <img *ngIf="post.magazine.logo != null" title="{{post.magazine.username}}" src="{{post.magazine.logo}}" alt="{{post.magazine.name}}">
+                                                        <img *ngIf="post.magazine.logo == null" title="{{post.magazine.username}}" src="assets/image/default.jpg" alt="{{post.magazine.name}}">
+                                                    </div>
+                                                    <div class="col-auto col-sm-11 w-custom-detail">
+                                                        <div class="row gy-2">
+                                                            <a [routerLink]="['/katibe',post.magazine.username]" class="ancher cursor col-12 d-flex align-items-center px-0 p-0" (click)="onActivate($event)">
+                                                                <span class="com-name">{{post.magazine.name}} <i *ngIf="post.magazine.is_verify" class="fas fa-check-circle me-1"></i>
+                                                                </span>
+                                                            </a>
+                                                            <div class="col-12 d-flex align-items-center px-0">
+                                                                <i class="fas fa-clock ms-1"></i>
+                                                                <span class="post-date">{{post.publish_date}}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-2 col-sm-1 w-custom-menu d-flex align-items-start">
+                                                <button mat-icon-button class="" [matMenuTriggerFor]="beforeMenu">
+                                                    <mat-icon>more_horiz</mat-icon>
+                                                  </button>
+                                                <mat-menu #beforeMenu="matMenu" xPosition="before">
+                                                    <button mat-menu-item (click)="this.General.share(this.General.CopyPostShowDetailLink(post.magazine.username,post.slug,post.title))">
+                                                       <mat-icon>share</mat-icon>
+                                                       <span class="btn-custom">اشتراک گذاری</span>
+                                                    </button>
+                                                    <button mat-menu-item [cdkCopyToClipboard]="this.General.CopyPostShowDetailLink(post.magazine.username,post.slug,post.title)" (click)='this.General.openSnackBar("لینک کپی شد","تمام")'>
+                                                       <mat-icon>content_copy</mat-icon>
+                                                       <span class="btn-custom">کپی لینک</span>
+                                                    </button>
+                                                    <button mat-menu-item (click)="this.General.GetReportPost(post.slug,this.General.CopyPostShowDetailLink(post.magazine.username,post.slug,''))">
+                                                        <mat-icon>flag</mat-icon>
+                                                        <span class="btn-custom">گزارش</span>
+                                                    </button>
+                                                    <!-- <button mat-menu-item>
+                                                        <mat-icon>bookmark_border</mat-icon>
+                                                        <mat-icon>bookmark</mat-icon>
+                                                        <span class="btn-custom">ذخیره</span>
+                                                    </button>
+                                                    <button mat-menu-item>
+                                                        <mat-icon>edit</mat-icon>
+                                                        <span class="btn-custom">ویرایش</span>
+                                                      </button>
+                                                    <button mat-menu-item>
+                                                        <mat-icon>delete</mat-icon>
+                                                        <span class="btn-custom">حذف</span>
+                                                    </button> -->
+                                                </mat-menu>
+                                            </div>
+                                        </div>
+
+                                        <div class="row w-100 me-0 justify-content-center">
+                                            <a class="ancher p-0" (click)="onActivate($event)" [routerLink]="['/katibe',post.magazine.username,'negare',post.slug,this.General.RegEx(post.title)]">
+                                                <h1 class="p-2 post-title my-0">{{post.title}}</h1>
+                                            </a>
+                                            <div class="overflow-hidden p-0 h-100">
+                                                <img (load)="loadImage()" [hidden]="imgLoad == false" *ngIf="post.logo != null" src="{{post.logo}}" class="post-img" alt="{{post.title}}" title="{{post.title}}">
+                                            </div>
+                                            <div class="row px-0">
+                                                <p class="col-12 mx-0 post-text" [innerHTML]='post.text | wordCounter:50:"..."'>
+
+                                                </p>
+                                                <div class="row justify-content-end pb-3">
+                                                    <button mat-raised-button color="primary">
+                                                        <a (click)="onActivate($event)" [routerLink]="['/katibe',post.magazine.username,'negare',post.slug,this.General.RegEx(post.title)]" class="ancher-button">
+                                                            ادامه مطلب
+                                                        </a>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- (load)="loadImage()" [hidden]="imgLoad == false" -->
+                                        <div class="row d-flex align-items-center justrify-content-start p-2 mx-0 mb-1 w-100 border-custom">
+                                            <a *ngIf="post.is_show_author == true" class="ancher post-author col-auto d-flex align-items-center" (click)="onActivate($event)" [routerLink]="['/hamafarin',post.author.username]">
+                                                <img *ngIf="post.author.profile_photo != null" class="author-img" src="{{post.author.profile_photo}}" title="{{post.author.username}}" alt="{{post.author.username}}">
+                                                <img *ngIf="post.author.profile_photo == null" class="author-img" src="assets/image/no-pro.png" title="{{post.author.username}}" alt="{{post.author.username}}">
+                                                <span class="author-name">{{post.author.username}}</span>
+                                            </a>
+                                            <div class="post-view col-auto d-flex align-items-center">
+                                                <mat-icon class="d-flex align-items-center">
+                                                    visibility
+                                                </mat-icon>
+                                                <span>
+                                                    &nbsp;{{post.visitor_counter}}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                            </div>
+                        </section>
+                        <!--- End Articles Section -->
+                    </div>
+                </aside>
+            </div>
+
+        </aside>
+        <aside class="col-12 col-md-3 col-custom-left ms-1 d-none d-lg-block px-0">
+            <div class="row mx-0 w-100">
+                <div class="col-12 p-0">
+                    <img src="assets/image/job1.jpg" alt="" class="w-100 h-auto image-border">
+                </div>
+            </div>
+        </aside>
+    </section>
+
+</div>

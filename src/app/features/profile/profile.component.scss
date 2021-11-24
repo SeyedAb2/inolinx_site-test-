@@ -1,0 +1,121 @@
+@import "../home/home.component.scss";
+@import "../magezine/single-magezine/single-magezine.component.scss";
+.circle {
+    border-radius: 50% !important;
+}
+
+.sticky-custom {
+    position: -webkit-fixed !important;
+    position: fixed !important;
+    //top: 100px;
+    z-index: 100 !important;
+    //width: 22.2% !important;
+    max-height: inherit !important;
+}
+
+.sticky {
+    max-height: 500px !important;
+    overflow-y: auto;
+    border-radius: 7px;
+}
+
+.sticky::-webkit-scrollbar {
+    background: #a5a5a5;
+    display: block;
+    width: 0px;
+    scrollbar-color: rebeccapurple green;
+}
+
+.sticky::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sticky::-webkit-scrollbar-thumb {
+    background-color: #636363;
+    border-right: none;
+    border-left: none;
+}
+
+.sticky::-webkit-scrollbar-track-piece:end {
+    background: transparent;
+    margin-bottom: 10px;
+}
+
+.sticky::-webkit-scrollbar-track-piece:start {
+    background: transparent;
+    margin-top: 10px;
+}
+
+////////////////////////////////////////////////////////////////
+.banner-sidebar {
+    width: 100%;
+    height: 60px;
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        @include borderRadiusCustom(7, 7, 0, 0)
+    }
+}
+
+.logo-sidebar {
+    border-radius: 50%;
+    top: 22px !important;
+    img {
+        width: 70px !important;
+        height: 70px !important;
+        border-radius: 50%;
+        border: 1px solid #ccc !important;
+    }
+    @media (min-width: 768px) {
+        top: 20px;
+        img {
+            width: 60px !important;
+            height: 60px !important;
+        }
+    }
+    @media (min-width: 992px) {
+        top: 22px;
+        img {
+            width: 65px !important;
+            height: 65px !important;
+        }
+    }
+    @media (min-width: 1024px) {
+        top: 22px;
+        img {
+            width: 70px !important;
+            height: 70px !important;
+        }
+    }
+}
+
+.author-sidebar {
+    font-family: vazir !important;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.bio-sidebar {
+    font-size: 0.85rem;
+    font-family: vazir !important;
+    color: rgb(114, 114, 114);
+}
+
+.contact-button {
+    border-radius: 20px;
+    color: white;
+    &:hover {
+        color: white transparent;
+    }
+}
+
+////////////////////////////////////////////////////////////////
+.sticky-top-custom {
+    top: 100px;
+    z-index: 1020;
+    position: -webkit-sticky;
+    position: sticky;
+}
+
+////////////////////////////////////////////////////////////////

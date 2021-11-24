@@ -1,0 +1,140 @@
+<div class="container-fluid" (scroll)="onscroll()">
+    <section class="row d-flex justify-content-center px-0">
+        <aside class="col-12 col-lg-8 col-custom-right">
+            <div class="row d-flex justify-content-start mx-lg-0">
+                <div class="col-12 mb-5 ps-md-2">
+                    <div class="row">
+                        <div class="col-12 px-lg-0">
+                            <div class="row justify-content-start mx-md-0">
+                                <aside class="col-12 col-md-3 col-custom-right-right d-none d-md-block">
+                                    <div class="row pe-2 ps-lg-0 pe-lg-0 ps-md-2 ps-lg-0 sticky" [ngClass]="stickyController?'sticky-custom':''">
+                                        <div class="overflow px-0 mx-0">
+                                            <div class="col-12 border-col-setting mb-3">
+                                                <div class="row mx-0 w-100">
+                                                    <div class="col-8 mx-auto my-3 px-0 bg-white">
+                                                        <img class="img-responsive w-100 h-auto" src="assets/image/quiz.png" alt="">
+                                                    </div>
+                                                    <h4 class="col-12 mt-1 mb-2 text-center font-family px-0 px-lg-2">
+                                                        <span class="font-weight-bold">میخوای تواناییت رو بسنجی؟</span>
+                                                        <br> دوست داری بدونی چه استعدادی داری؟
+                                                    </h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </aside>
+                                <aside class="col-12 col-md-9 col-custom-right-center px-md-2 px-lg-0">
+                                    <div class="section-control row mx-1 mx-md-0 me-lg-2 ms-lg-1">
+                                        <!--- Start Articles Section -->
+                                        <section class="col-12 px-1">
+                                            <div class="container-fluid px-2">
+                                                <div class="row gy-4">
+                                                    <div class="col-12 bg-white p-0 pb-3 border-col-setting magezine-article">
+                                                        <div class="row px-0 me-0 w-100">
+                                                            <div class="col-12 w-100 overflow-hidden magezine-parent-banner ">
+                                                                <img src="./assets/image/mbti-banner.jpg" alt="">
+                                                            </div>
+                                                            <div class="col-12 w-100 bg-white magezine-parent-logo circle">
+                                                                <img src="../assets/image/mbti-logo.png" alt="" class="circle">
+                                                            </div>
+                                                            <div class="col-12 w-100 magezine-parent-info">
+                                                                <h1 class="d-flex align-items-center my-0">
+                                                                    <span class="com-name">آزمون MBTI-extended </span>
+                                                                </h1>
+                                                                <p class="bio my-0">آزمون چند معیاره
+                                                                </p>
+                                                                <p class="description ps-1 my-0">
+                                                                    به آزمون MBTI محلق شوید و بروز باشید.میتوانید مطالب مرتبط به کارآفرینی و بازاریابی رو از اینجا دنبال کنید اگر از محتوای ما خوشتان اومد آنرابا دیگران به اشتراک بگذارید.
+                                                                </p>
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <div class="row d-flex align-items-center justify-content-start my-1 px-1 gy-2">
+                                                                    <div class="vmb col-12 col-sm-3 col-md-2">
+                                                                        <a (click)="onActivate($event)" class="w-100 view-more-btn" routerLink="../quiz/mbti" mat-raised-button>
+                                                                    شروع آزمون
+                                                                    </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 bg-white p-0 pb-3 border-col-setting magezine-article">
+                                                        <div class="row px-0 me-0 w-100">
+                                                            <div class="col-12 w-100 overflow-hidden magezine-parent-banner ">
+                                                                <img src="./assets/image/Management-Styles.png" alt="">
+                                                            </div>
+                                                            <div class="col-12 w-100 bg-white magezine-parent-logo circle">
+                                                                <img src="../assets/image/msi1.png" alt="" class="circle">
+                                                            </div>
+                                                            <div class="col-12 w-100 magezine-parent-info">
+                                                                <h1 class="d-flex align-items-center my-0">
+                                                                    <span class="com-name">آزمون MSI-a </span>
+                                                                </h1>
+                                                                <p class="bio my-0">آزمون سورتینگ یا مرتب سازی
+                                                                </p>
+                                                                <p class="description ps-1 my-0">
+                                                                    به آزمون MSI محلق شوید و بروز باشید.میتوانید مطالب مرتبط به کارآفرینی و بازاریابی رو از اینجا دنبال کنید اگر از محتوای ما خوشتان اومد آنرابا دیگران به اشتراک بگذارید.
+                                                                </p>
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <div class="row d-flex align-items-center justify-content-start my-1 px-1 gy-2">
+                                                                    <div class="vmb col-12 col-sm-3 col-md-2">
+                                                                        <a class="w-100 view-more-btn" (click)="onActivate($event)" routerLink="../quiz/msi" mat-raised-button>
+                                                                    شروع آزمون
+                                                                    </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 bg-white p-0 pb-3 border-col-setting magezine-article">
+                                                        <div class="row px-0 me-0 w-100">
+                                                            <div class="col-12 w-100 overflow-hidden magezine-parent-banner ">
+                                                                <img src="./assets/image/msi-banner.jpg" alt="">
+                                                            </div>
+                                                            <div class="col-12 w-100 bg-white magezine-parent-logo circle">
+                                                                <img src="../assets/image/glasser.png" alt="" class="circle">
+                                                            </div>
+                                                            <div class="col-12 w-100 magezine-parent-info">
+                                                                <h1 class="d-flex align-items-center my-0">
+                                                                    <span class="com-name">آزمون Glasser </span>
+                                                                </h1>
+                                                                <p class="bio my-0">آزمون سورتینگ یا مرتب سازی
+                                                                </p>
+                                                                <p class="description ps-1 my-0">
+                                                                    به آزمون Glasser محلق شوید و بروز باشید.میتوانید مطالب مرتبط به کارآفرینی و بازاریابی رو از اینجا دنبال کنید اگر از محتوای ما خوشتان اومد آنرابا دیگران به اشتراک بگذارید.
+                                                                </p>
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <div class="row d-flex align-items-center justify-content-start my-1 px-1 gy-2">
+                                                                    <div class="vmb col-12 col-sm-3 col-md-2">
+                                                                        <a class="w-100 view-more-btn" (click)="onActivate($event)" routerLink="../quiz/glasser" mat-raised-button>
+                                                                    شروع آزمون
+                                                                    </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+                                        <!--- End Articles Section -->
+                                    </div>
+                                </aside>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <aside class="col-12 col-md-3 col-custom-left ms-1 d-none d-lg-block px-0">
+            <div class="row mx-0 w-100">
+                <div class="col-12 p-0">
+                    <img src="assets/image/job1.jpg" alt="" class="w-100 h-auto image-border">
+                </div>
+            </div>
+        </aside>
+    </section>
+
+</div>
